@@ -49,12 +49,18 @@ class SpriteLayer: ObservableObject, Identifiable {
         self.radiusFraction = radiusFraction
         self.parentRadius = parentRadius
 
-        if layerIndex > 0 { return }
-
         Sprite.startActions(
             layerIndex: layerIndex, compensatorShape: compensatorShape,
             penShape: penShape, radiusShape: radiusShape,
             parentRingRadius: parentRadius
         )
+    }
+
+    func setPenLength(_ fraction: Double) {
+        penShape.xScale = fraction
+    }
+
+    func setRadiusFraction(_ fraction: Double) {
+        radiusShape.setScale(sqrt(fraction))
     }
 }

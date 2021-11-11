@@ -31,6 +31,8 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         )
 
         layerStack.addLayer(parentSKNode: ringo)
+        layerStack.addLayer(parentSKNode: layerStack[0].ringShape)
+        layerStack.addLayer(parentSKNode: layerStack[1].ringShape)
 
         readyToRun = true
     }
@@ -58,6 +60,10 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
                 self.dotsPool.releaseSprite(easyDot)
             }
         }
+    }
+
+    override func update(_ currentTime: TimeInterval) {
+        tickCount += 1
     }
 }
 
@@ -104,6 +110,6 @@ extension ArenaScene {
 
 extension ArenaScene {
     func setViewingScale(X scaleSquared: Double) {
-        ringo.setScale(sqrt(scaleSquared))
+        ringo?.setScale(sqrt(scaleSquared))
     }
 }

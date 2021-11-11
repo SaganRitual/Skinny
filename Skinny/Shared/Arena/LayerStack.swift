@@ -11,11 +11,12 @@ class LayerStack: ObservableObject, RandomAccessCollection {
     subscript(position: Int) -> SpriteLayer { layers[position] }
 
     private let colors: [SKColor] = [
-        .cyan, .magenta, .yellow, .red, .green
+//        .cyan, .magenta, .yellow, .red, .green
+        .clear, .clear, .clear, .clear, .clear
     ]
 
     private let initialRadiusFractions: [Double] = [
-        0.5, 0.5, 0.5, 0.5, 0.5
+        0.45, 0.65, 0.75, 0.95, 0.95
     ]
 
     func addLayer(parentSKNode: SKNode) {

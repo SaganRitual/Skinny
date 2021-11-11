@@ -49,6 +49,8 @@
 		D49C87DC273CBCD800D986C0 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DA273CBCD800D986C0 /* Sprite.swift */; };
 		D49C87DE273CDA0800D986C0 /* SpritePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DD273CDA0800D986C0 /* SpritePool.swift */; };
 		D49C87DF273CDA0800D986C0 /* SpritePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DD273CDA0800D986C0 /* SpritePool.swift */; };
+		D49C87E1273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */; };
+		D49C87E2273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,7 @@
 		D49C87D2273CBB0A00D986C0 /* swiftlint.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = swiftlint.sh; sourceTree = "<group>"; };
 		D49C87DA273CBCD800D986C0 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 		D49C87DD273CDA0800D986C0 /* SpritePool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpritePool.swift; sourceTree = "<group>"; };
+		D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSlidersGroupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				D49C87BC273C95CA00D986C0 /* AppSettingsView.swift */,
+				D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -325,6 +329,7 @@
 				D49C87B0273C788100D986C0 /* Deque.swift in Sources */,
 				D49C87AE273C788100D986C0 /* GridPoint.swift in Sources */,
 				D49C8795273C775800D986C0 /* ContentView.swift in Sources */,
+				D49C87E1273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */,
 				D49C87B4273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8793273C775800D986C0 /* SkinnyApp.swift in Sources */,
 				D49C87DB273CBCD800D986C0 /* Sprite.swift in Sources */,
@@ -348,6 +353,7 @@
 				D49C87B1273C788100D986C0 /* Deque.swift in Sources */,
 				D49C87AF273C788100D986C0 /* GridPoint.swift in Sources */,
 				D49C8796273C775800D986C0 /* ContentView.swift in Sources */,
+				D49C87E2273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */,
 				D49C87B5273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8794273C775800D986C0 /* SkinnyApp.swift in Sources */,
 				D49C87DC273CBCD800D986C0 /* Sprite.swift in Sources */,

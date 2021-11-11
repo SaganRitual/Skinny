@@ -14,16 +14,14 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { gr in
             HStack {
-                if arenaScene.readyToRun {
+                VStack {
                     AppSettingsView()
-                        .frame(width: 300)
+                    if $arenaScene.layerStack.layers.count > 0 {
+                        LayerSlidersGroupView()
+                            .environmentObject(arenaScene.layerStack.layers[0])
+                    }
                 }
-
-//                VStack {
-//                    AppSettingsView()
-//                    LayerSettingsListView()
-//                }
-//                .frame(width: 300)
+                .frame(width: 300)
 
                 ArenaView()
                     .frame(
