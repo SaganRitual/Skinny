@@ -35,6 +35,10 @@
 		D49C87C4273C971500D986C0 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C1273C971500D986C0 /* SliderView.swift */; };
 		D49C87C5273C971500D986C0 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C2273C971500D986C0 /* ToggleView.swift */; };
 		D49C87C6273C971500D986C0 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C2273C971500D986C0 /* ToggleView.swift */; };
+		D49C87C8273CB1DD00D986C0 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C7273CB1DD00D986C0 /* Layer.swift */; };
+		D49C87C9273CB1DD00D986C0 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C7273CB1DD00D986C0 /* Layer.swift */; };
+		D49C87CB273CB21D00D986C0 /* LayerStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87CA273CB21D00D986C0 /* LayerStack.swift */; };
+		D49C87CC273CB21D00D986C0 /* LayerStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87CA273CB21D00D986C0 /* LayerStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +59,8 @@
 		D49C87BC273C95CA00D986C0 /* DashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		D49C87C1273C971500D986C0 /* SliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		D49C87C2273C971500D986C0 /* ToggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleView.swift; sourceTree = "<group>"; };
+		D49C87C7273CB1DD00D986C0 /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		D49C87CA273CB21D00D986C0 /* LayerStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,8 @@
 			children = (
 				D49C87A5273C77EB00D986C0 /* ArenaScene.swift */,
 				D49C87A2273C77AC00D986C0 /* ArenaView.swift */,
+				D49C87C7273CB1DD00D986C0 /* Layer.swift */,
+				D49C87CA273CB21D00D986C0 /* LayerStack.swift */,
 			);
 			path = Arena;
 			sourceTree = "<group>";
@@ -263,6 +271,7 @@
 				D49C87A6273C77EB00D986C0 /* ArenaScene.swift in Sources */,
 				D49C87A3273C77AC00D986C0 /* ArenaView.swift in Sources */,
 				D49C87BD273C95CA00D986C0 /* DashboardView.swift in Sources */,
+				D49C87C8273CB1DD00D986C0 /* Layer.swift in Sources */,
 				D49C87BA273C794E00D986C0 /* Sprites.swift in Sources */,
 				D49C87B6273C788100D986C0 /* TriangleFormulae.swift in Sources */,
 				D49C87B0273C788100D986C0 /* Deque.swift in Sources */,
@@ -271,6 +280,7 @@
 				D49C87B4273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8793273C775800D986C0 /* SkinnyApp.swift in Sources */,
 				D49C87C5273C971500D986C0 /* ToggleView.swift in Sources */,
+				D49C87CB273CB21D00D986C0 /* LayerStack.swift in Sources */,
 				D49C87C3273C971500D986C0 /* SliderView.swift in Sources */,
 				D49C87B2273C788100D986C0 /* Extensions.swift in Sources */,
 			);
@@ -283,6 +293,7 @@
 				D49C87A7273C77EB00D986C0 /* ArenaScene.swift in Sources */,
 				D49C87A4273C77AC00D986C0 /* ArenaView.swift in Sources */,
 				D49C87BE273C95CA00D986C0 /* DashboardView.swift in Sources */,
+				D49C87C9273CB1DD00D986C0 /* Layer.swift in Sources */,
 				D49C87BB273C794E00D986C0 /* Sprites.swift in Sources */,
 				D49C87B7273C788100D986C0 /* TriangleFormulae.swift in Sources */,
 				D49C87B1273C788100D986C0 /* Deque.swift in Sources */,
@@ -291,6 +302,7 @@
 				D49C87B5273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8794273C775800D986C0 /* SkinnyApp.swift in Sources */,
 				D49C87C6273C971500D986C0 /* ToggleView.swift in Sources */,
+				D49C87CC273CB21D00D986C0 /* LayerStack.swift in Sources */,
 				D49C87C4273C971500D986C0 /* SliderView.swift in Sources */,
 				D49C87B3273C788100D986C0 /* Extensions.swift in Sources */,
 			);

@@ -5,7 +5,7 @@ import SpriteKit
 class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
     private var ringo: SKShapeNode!
 
-//    var layerStack = LayerStack()
+    var layerStack = LayerStack()
 
     override init(size: CGSize) {
         super.init(size: size)
@@ -49,7 +49,7 @@ extension ArenaScene {
 
 
 extension ArenaScene {
-    func setDriveRate(hz: Double) {
+    func setDriveRate(X: Double) {
 //        layerStack[0].ringShape.removeAllActions()
 //
 //        if hz == 0 { return }
@@ -62,7 +62,14 @@ extension ArenaScene {
 }
 
 extension ArenaScene {
-    func setViewingScale(_ scaleSquared: Double) {
-//        ringo.setScale(sqrt(scaleSquared))
+    func setRunSpeed(X: Double) {
+        precondition(X >= 0, "Negative speed not yet supported")
+        self.speed = X
+    }
+}
+
+extension ArenaScene {
+    func setViewingScale(X scaleSquared: Double) {
+        ringo.setScale(sqrt(scaleSquared))
     }
 }

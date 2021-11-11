@@ -4,6 +4,7 @@ import SwiftUI
 
 struct SliderView: View {
     let label: String
+    let labellet: String
     let range: ClosedRange<Double>
     let step: Double
 
@@ -13,10 +14,15 @@ struct SliderView: View {
                 .publisher(for: NSNotification.Name("ringRadius"))
 
     var body: some View {
-        HStack {
-            Text(label)
-                .frame(width: 75, height: nil, alignment: .leading)
-                .padding(.leading)
+        VStack {
+            HStack {
+                Text(label)
+                    .frame(alignment: .leading)
+
+                Text("\(value.asString(decimals: 2))\(labellet)")
+                    .frame(alignment: .trailing)
+            }
+
 
             Slider(
                 value: $value,
@@ -26,7 +32,7 @@ struct SliderView: View {
                 maximumValueLabel: Text("\(range.upperBound.asString(decimals: 0))"),
                 label: { }
             )
-            .padding(.trailing, 10)
+            .padding([.leading, .trailing], 10)
         }
     }
 }
@@ -36,7 +42,7 @@ struct AppSettingsSliderView_Previews: PreviewProvider {
 
     static var previews: some View {
         SliderView(
-            label: "Zoom",
+            label: "Zoom", labellet: "X",
             range: 1...10, step: 1,
             value: $ring0SpinPeriod
         )
