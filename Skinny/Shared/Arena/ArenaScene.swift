@@ -47,7 +47,7 @@ extension ArenaScene {
         ringo.removeAllActions()
 
         if carouselHz == 0 { return }
-        let angle = sign(carouselHz) * carouselHz * .tau
+        let angle = sign(carouselHz) * .tau
 
         let rotate = SKAction.rotate(byAngle: angle, duration: 1 / abs(carouselHz))
         let rotateForever = SKAction.repeatForever(rotate)

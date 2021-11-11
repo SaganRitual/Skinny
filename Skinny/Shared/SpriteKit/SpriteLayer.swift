@@ -5,62 +5,131 @@ import SpriteKit
 class SpriteLayer: ObservableObject, Identifiable {
     let id = UUID()
 
-    @Published var showCenters = true
-    @Published var showPen = true
-    @Published var showRadius = true
-    @Published var showRing = true
-
-    @Published var parentRadius: Double
-    @Published var penLength = 1.0
-    @Published var radiusFraction: Double
-
-    let compensatorShape: SKShapeNode
     let penShape: SKShapeNode
-    let penTipShape: SKNode
-    let radiusShape: SKShapeNode
+    let penTip: SKNode
     let ringShape: SKShapeNode
+    let ringTransport: SKShapeNode
 
     init(
         layerIndex: Int, parentSKNode: SKNode,
         color: SKColor, radiusFraction: Double
     ) {
         let parentRadius = parentSKNode.frame.size.width / 2
-        let mRadius = radiusFraction * parentRadius
+        let myRingRadius = radiusFraction * parentRadius
+        let myTransportRadius = parentRadius - myRingRadius
 
-        self.radiusShape = Sprite.makeRadiusShape(
-            parentSKNode: parentSKNode, radius: mRadius, color: color
+        self.ringTransport = SpriteLayer.makeRingTransport(
+            parentSKNode: parentSKNode, radius: myRingRadius
         )
 
-        self.compensatorShape = Sprite.makeCompensator(
-            parentSKNode: radiusShape, radius: mRadius
+        self.ringShape = SpriteLayer.makeRing(
+            parentSKNode: ringTransport, radius: myRingRadius
         )
 
-        self.ringShape = Sprite.makeMainRing(
-            parentSKNode: compensatorShape, radius: mRadius, color: color
+        self.penShape = SpriteLayer.makePen(
+            parentSKNode: ringShape, length: myRingRadius * 0.75
         )
 
-        self.penShape = Sprite.makePenShape(
-            parentSKNode: compensatorShape, radius: mRadius, color: color)
+        self.penTip = SpriteLayer.makePenTip(parentSKNode: penShape)
 
-        self.penTipShape = Sprite.makePenTipShape(
-            parentSKNode: penShape, penLength: mRadius
-        )
-
-        self.radiusFraction = radiusFraction
-        self.parentRadius = parentRadius
-
-        Sprite.startActions(
-            layerIndex: layerIndex, compensatorShape: compensatorShape,
-            penShape: penShape, radiusShape: radiusShape,
-            parentRingRadius: parentRadius
+        SpriteLayer.startTransport(
+            layerIndex: layerIndex,
+            ringTransport: ringTransport,
+            parentSKNode: parentSKNode,
+            myTransportRadius: myTransportRadius
         )
     }
+}
 
-    func setPenLength(_ fraction: Double) {
-        penShape.xScale = fraction
+extension SpriteLayer {
+    static func startTransport(
+        layerIndex: Int,
+        ringTransport: SKNode, parentSKNode: SKNode, myTransportRadius: Double
+    ) {
+        let myTransportDiameter = myTransportRadius * 2
+        let transportPathOrigin = CGPoint(x: -myTransportRadius, y: -myTransportRadius)
+        let transportPathSize = CGSize(width: myTransportDiameter, height: myTransportDiameter)
+        let transportPathRect = CGRect(origin: transportPathOrigin, size: transportPathSize)
+        let transportPath = CGMutablePath(ellipseIn: transportPathRect, transform: nil)
+
+        let debugRingTransport = SKShapeNode(path: transportPath)
+        debugRingTransport.strokeColor = .clear//.yellow
+        parentSKNode.addChild(debugRingTransport)
+
+        let follow_ = SKAction.follow(
+            transportPath, asOffset: false, orientToPath: false, duration: 1
+        )
+
+        let follow = (layerIndex % 2 == 0) ? follow_ : follow_.reversed()
+
+        let spinAngle = (layerIndex % 2 == 0) ? -Double.tau : Double.tau
+
+        let spin = SKAction.rotate(byAngle: spinAngle, duration: 1)
+
+        let group = SKAction.group([follow, spin])
+        let rf = SKAction.repeatForever(group)
+
+        ringTransport.run(rf)
+    }
+}
+
+extension SpriteLayer {
+    static func makeRingTransport(
+        parentSKNode: SKNode, radius: Double
+    ) -> SKShapeNode {
+        let size = CGSize(width: 10, height: 10)
+        let origin = CGPoint(x: -5, y: -5)
+        let rectangle = CGRect(origin: origin, size: size)
+
+        let shapeNode = SKShapeNode(rect: rectangle)
+
+        shapeNode.position = CGPoint(x: radius, y: 0)
+        shapeNode.fillColor = .clear //.blue
+        shapeNode.strokeColor = .clear
+
+        parentSKNode.addChild(shapeNode)
+        return shapeNode
     }
 
-    func setRadiusFraction(_ fraction: Double) {
-        radiusShape.setScale(sqrt(fraction))
+    static func makeRing(
+        parentSKNode: SKNode, radius: Double
+    ) -> SKShapeNode {
+        let origin = CGPoint(x: -5 + parentSKNode.frame.size.width / 2, y: 0)
+
+        let shapeNode = SKShapeNode(circleOfRadius: radius)
+
+        shapeNode.position = origin
+        shapeNode.fillColor = .clear
+        shapeNode.strokeColor = .clear//.green
+
+        parentSKNode.addChild(shapeNode)
+        return shapeNode
+    }
+
+    static func makePen(
+        parentSKNode: SKNode, length: Double
+    ) -> SKShapeNode {
+        var pathPoints: [CGPoint] = [
+            CGPoint.zero, CGPoint(x: length, y: 0)
+        ]
+
+        let shapeNode = SKShapeNode(points: &pathPoints, count: 2)
+        shapeNode.position = .zero
+        shapeNode.fillColor = .clear
+
+        // Weird; if we make the stroke color .clear, it's as though the pen
+        // isn't being created, so the pen tip looks like it's attached to the
+        // transport
+        shapeNode.strokeColor = SKColor(calibratedWhite: 0.01, alpha: 0.01)
+
+        parentSKNode.addChild(shapeNode)
+        return shapeNode
+    }
+
+    static func makePenTip(parentSKNode: SKNode) -> SKNode {
+        let node = SKNode()
+        node.position.x = parentSKNode.frame.size.width / 2
+        parentSKNode.addChild(node)
+        return node
     }
 }

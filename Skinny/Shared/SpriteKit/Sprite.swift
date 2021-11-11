@@ -27,44 +27,6 @@ enum Sprite {
         radiusShape.run(spinForever)
     }
 
-    /*
-
-     let direction = Double.tau * ((layerIndex % 2 == 0) ? -1.0 : 1.0)
-     let ringCycleDuration = 1.0// 1 / settings.rotationRateHz
-     let penCycleDuration = ringCycleDuration * (ringRadius / parentLayer.ringRadius())
-
-     let penSpinAction = SKAction.rotate(byAngle: -direction, duration: penCycleDuration)
-     let penSpinForever = SKAction.repeatForever(penSpinAction)
-
-     let spinAction = SKAction.rotate(byAngle: direction, duration: ringCycleDuration)
-     let spinForever = SKAction.repeatForever(spinAction)
-
-     let compensateAction = SKAction.rotate(byAngle: -direction, duration: ringCycleDuration)
-     let compensateForever = SKAction.repeatForever(compensateAction)
-
-     compensator.run(compensateForever)
-     penShape.run(penSpinForever)
-     spacerShape.run(spinForever)
-
-     */
-
-    static func makeCompensator(
-        parentSKNode: SKNode, radius: Double
-    ) -> SKShapeNode {
-        let sCompensator = CGSize(width: 1, height: 1)
-        let oCompensator = CGPoint(x: -0.5, y: -0.5)
-        let rCompensator = CGRect(origin: oCompensator, size: sCompensator)
-
-        let compensatorShape = SKShapeNode(rect: rCompensator)
-
-        compensatorShape.position = CGPoint(x: radius, y: 0)
-        compensatorShape.fillColor = .blue
-        compensatorShape.strokeColor = .clear
-
-        parentSKNode.addChild(compensatorShape)
-        return compensatorShape
-    }
-
     static func makeMainRing(
         parentSKNode: SKNode, radius: Double, color: SKColor
     ) -> SKShapeNode {
