@@ -31,8 +31,8 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         )
 
         layerStack.addLayer(parentSKNode: ringo)
-//        layerStack.addLayer(parentSKNode: layerStack[0].ringShape)
-//        layerStack.addLayer(parentSKNode: layerStack[1].ringShape)
+        layerStack.addLayer(parentSKNode: layerStack[0].ringShape)
+        layerStack.addLayer(parentSKNode: layerStack[1].ringShape)
 
         readyToRun = true
     }

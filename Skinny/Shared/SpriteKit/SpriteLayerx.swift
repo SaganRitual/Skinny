@@ -5,9 +5,10 @@ import SpriteKit
 class SpriteLayer: ObservableObject, Identifiable {
     let id = UUID()
 
+    let penShape: SKShapeNode
+    let penTip: SKNode
+    let ringShape: SKShapeNode
     let ringTransport: SKShapeNode
-//    let penShape: SKShapeNode
-//    let ringShape: SKShapeNode
 
     init(
         layerIndex: Int, parentSKNode: SKNode,
@@ -21,7 +22,18 @@ class SpriteLayer: ObservableObject, Identifiable {
             parentSKNode: parentSKNode, radius: myRingRadius
         )
 
+        self.ringShape = SpriteLayer.makeRing(
+            parentSKNode: ringTransport, radius: myRingRadius
+        )
+
+        self.penShape = SpriteLayer.makePen(
+            parentSKNode: ringShape, length: myRingRadius * 0.75
+        )
+
+        self.penTip = SpriteLayer.makePenTip(parentSKNode: penShape)
+
         SpriteLayer.startTransport(
+            layerIndex: layerIndex,
             ringTransport: ringTransport,
             parentSKNode: parentSKNode,
             myTransportRadius: myTransportRadius
@@ -31,6 +43,7 @@ class SpriteLayer: ObservableObject, Identifiable {
 
 extension SpriteLayer {
     static func startTransport(
+        layerIndex: Int,
         ringTransport: SKNode, parentSKNode: SKNode, myTransportRadius: Double
     ) {
         let myTransportDiameter = myTransportRadius * 2
@@ -43,11 +56,19 @@ extension SpriteLayer {
         debugRingTransport.strokeColor = .yellow
         parentSKNode.addChild(debugRingTransport)
 
-        let action = SKAction.follow(
+        let follow_ = SKAction.follow(
             transportPath, asOffset: false, orientToPath: false, duration: 1
         )
 
-        let rf = SKAction.repeatForever(action)
+        let follow = (layerIndex % 2 == 0) ? follow_ : follow_.reversed()
+
+        let spinAngle = (layerIndex % 2 == 0) ? -Double.tau : Double.tau
+
+        let spin = SKAction.rotate(byAngle: spinAngle, duration: 1)
+
+        let group = SKAction.group([follow, spin])
+        let rf = SKAction.repeatForever(group)
+
         ringTransport.run(rf)
     }
 }
@@ -68,5 +89,44 @@ extension SpriteLayer {
 
         parentSKNode.addChild(shapeNode)
         return shapeNode
+    }
+
+    static func makeRing(
+        parentSKNode: SKNode, radius: Double
+    ) -> SKShapeNode {
+        let spacerLength = parentSKNode.frame.size.width / 2 - radius
+        let origin = CGPoint(x: -5 + parentSKNode.frame.size.width / 2, y: 0)
+
+        let shapeNode = SKShapeNode(circleOfRadius: radius)
+
+        shapeNode.position = origin
+        shapeNode.fillColor = .clear
+        shapeNode.strokeColor = .green
+
+        parentSKNode.addChild(shapeNode)
+        return shapeNode
+    }
+
+    static func makePen(
+        parentSKNode: SKNode, length: Double
+    ) -> SKShapeNode {
+        var pathPoints: [CGPoint] = [
+            CGPoint.zero, CGPoint(x: length, y: 0)
+        ]
+
+        let shapeNode = SKShapeNode(points: &pathPoints, count: 2)
+        shapeNode.position = .zero
+        shapeNode.fillColor = .clear
+        shapeNode.strokeColor = .purple
+
+        parentSKNode.addChild(shapeNode)
+        return shapeNode
+    }
+
+    static func makePenTip(parentSKNode: SKNode) -> SKNode {
+        let node = SKNode()
+        node.position.x = parentSKNode.frame.size.width / 2
+        parentSKNode.addChild(node)
+        return node
     }
 }

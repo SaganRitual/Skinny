@@ -16,7 +16,7 @@ class LayerStack: ObservableObject, RandomAccessCollection {
     ]
 
     private let initialRadiusFractions: [Double] = [
-        0.45, 0.65, 0.75, 0.95, 0.95
+        0.5, 0.5, 0.5, 0.5, 0.5
     ]
 
     func addLayer(parentSKNode: SKNode) {
