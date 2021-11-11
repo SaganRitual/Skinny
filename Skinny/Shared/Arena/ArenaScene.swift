@@ -58,21 +58,21 @@ extension ArenaScene {
 
 extension ArenaScene {
     func setDriveRate(_ driveHz: Double) {
-        let driverRing = layerStack[0].radiusShape
-        let driverCompensator = layerStack[0].compensatorShape
-
-        driverRing.removeAllActions()
-        driverCompensator.removeAllActions()
-
-        if driveHz == 0 { return }
-        let angle = sign(driveHz) * .tau
-        let duration = 1 / abs(driveHz)
-
-        let rotate = SKAction.rotate(byAngle: angle, duration: duration)
-        let antiRotate = SKAction.rotate(byAngle: -angle, duration: duration)
-
-        driverRing.run(SKAction.repeatForever(rotate))
-        driverCompensator.run(SKAction.repeatForever(antiRotate))
+//        let driverRing = layerStack[0].radiusShape
+//        let driverCompensator = layerStack[0].compensatorShape
+//
+//        driverRing.removeAllActions()
+//        driverCompensator.removeAllActions()
+//
+//        if driveHz == 0 { return }
+//        let angle = sign(driveHz) * .tau
+//        let duration = 1 / abs(driveHz)
+//
+//        let rotate = SKAction.rotate(byAngle: angle, duration: duration)
+//        let antiRotate = SKAction.rotate(byAngle: -angle, duration: duration)
+//
+//        driverRing.run(SKAction.repeatForever(rotate))
+//        driverCompensator.run(SKAction.repeatForever(antiRotate))
     }
 }
 

@@ -33,8 +33,6 @@
 		D49C87C4273C971500D986C0 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C1273C971500D986C0 /* SliderView.swift */; };
 		D49C87C5273C971500D986C0 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C2273C971500D986C0 /* ToggleView.swift */; };
 		D49C87C6273C971500D986C0 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C2273C971500D986C0 /* ToggleView.swift */; };
-		D49C87C8273CB1DD00D986C0 /* SpriteLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C7273CB1DD00D986C0 /* SpriteLayer.swift */; };
-		D49C87C9273CB1DD00D986C0 /* SpriteLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C7273CB1DD00D986C0 /* SpriteLayer.swift */; };
 		D49C87CB273CB21D00D986C0 /* LayerStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87CA273CB21D00D986C0 /* LayerStack.swift */; };
 		D49C87CC273CB21D00D986C0 /* LayerStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87CA273CB21D00D986C0 /* LayerStack.swift */; };
 		D49C87CE273CBAFB00D986C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D49C87CD273CBAFB00D986C0 /* .gitignore */; };
@@ -50,15 +48,15 @@
 		D49C87DE273CDA0800D986C0 /* SpritePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DD273CDA0800D986C0 /* SpritePool.swift */; };
 		D49C87DF273CDA0800D986C0 /* SpritePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DD273CDA0800D986C0 /* SpritePool.swift */; };
 		D49C87E1273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */; };
-		D49C87E2273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */; };
 		D49C87E6273CF02900D986C0 /* LayerSettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E3273CF02900D986C0 /* LayerSettingsListView.swift */; };
 		D49C87E7273CF02900D986C0 /* LayerSettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E3273CF02900D986C0 /* LayerSettingsListView.swift */; };
 		D49C87E8273CF02900D986C0 /* LayerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E4273CF02900D986C0 /* LayerSettingsView.swift */; };
 		D49C87E9273CF02900D986C0 /* LayerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E4273CF02900D986C0 /* LayerSettingsView.swift */; };
 		D49C87EA273CF02900D986C0 /* LayerToggleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E5273CF02900D986C0 /* LayerToggleGroupView.swift */; };
-		D49C87EB273CF02900D986C0 /* LayerToggleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E5273CF02900D986C0 /* LayerToggleGroupView.swift */; };
 		D4C83B64273CF7AF00ED86BC /* ArenaSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C83B61273CF76C00ED86BC /* ArenaSceneDelegate.swift */; };
 		D4C83B66273CF7BA00ED86BC /* ArenaSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C83B65273CF7B700ED86BC /* ArenaSceneDelegate.swift */; };
+		D4C83B68273D35F200ED86BC /* SpriteLayerx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C83B67273D35F200ED86BC /* SpriteLayerx.swift */; };
+		D4C83B69273D35F200ED86BC /* SpriteLayerx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C83B67273D35F200ED86BC /* SpriteLayerx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +90,7 @@
 		D49C87E5273CF02900D986C0 /* LayerToggleGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerToggleGroupView.swift; sourceTree = "<group>"; };
 		D4C83B61273CF76C00ED86BC /* ArenaSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaSceneDelegate.swift; sourceTree = "<group>"; };
 		D4C83B65273CF7B700ED86BC /* ArenaSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaSceneDelegate.swift; sourceTree = "<group>"; };
+		D4C83B67273D35F200ED86BC /* SpriteLayerx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteLayerx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +186,7 @@
 				D49C87DA273CBCD800D986C0 /* Sprite.swift */,
 				D49C87C7273CB1DD00D986C0 /* SpriteLayer.swift */,
 				D49C87DD273CDA0800D986C0 /* SpritePool.swift */,
+				D4C83B67273D35F200ED86BC /* SpriteLayerx.swift */,
 			);
 			path = SpriteKit;
 			sourceTree = "<group>";
@@ -348,9 +348,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D49C87A6273C77EB00D986C0 /* ArenaScene.swift in Sources */,
+				D4C83B68273D35F200ED86BC /* SpriteLayerx.swift in Sources */,
 				D49C87A3273C77AC00D986C0 /* ArenaView.swift in Sources */,
 				D49C87BD273C95CA00D986C0 /* AppSettingsView.swift in Sources */,
-				D49C87C8273CB1DD00D986C0 /* SpriteLayer.swift in Sources */,
 				D49C87B6273C788100D986C0 /* TriangleFormulae.swift in Sources */,
 				D49C87B0273C788100D986C0 /* Deque.swift in Sources */,
 				D49C87AE273C788100D986C0 /* GridPoint.swift in Sources */,
@@ -376,16 +376,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D49C87A7273C77EB00D986C0 /* ArenaScene.swift in Sources */,
+				D4C83B69273D35F200ED86BC /* SpriteLayerx.swift in Sources */,
 				D49C87A4273C77AC00D986C0 /* ArenaView.swift in Sources */,
 				D49C87BE273C95CA00D986C0 /* AppSettingsView.swift in Sources */,
-				D49C87C9273CB1DD00D986C0 /* SpriteLayer.swift in Sources */,
 				D49C87B7273C788100D986C0 /* TriangleFormulae.swift in Sources */,
 				D49C87B1273C788100D986C0 /* Deque.swift in Sources */,
 				D49C87AF273C788100D986C0 /* GridPoint.swift in Sources */,
 				D49C8796273C775800D986C0 /* ContentView.swift in Sources */,
-				D49C87EB273CF02900D986C0 /* LayerToggleGroupView.swift in Sources */,
 				D4C83B66273CF7BA00ED86BC /* ArenaSceneDelegate.swift in Sources */,
-				D49C87E2273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */,
 				D49C87E7273CF02900D986C0 /* LayerSettingsListView.swift in Sources */,
 				D49C87B5273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8794273C775800D986C0 /* SkinnyApp.swift in Sources */,
