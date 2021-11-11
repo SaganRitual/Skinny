@@ -4,7 +4,7 @@ import SpriteKit
 import SwiftUI
 
 struct ContentView: View {
-    static private let size = CGSize(width: 800, height: 800)
+    static private let size = CGSize(width: 400, height: 400)
     @StateObject var arenaScene = ArenaScene(size: ContentView.size)
 
     func getSmallSide(from size: CGSize) -> CGFloat {
@@ -12,27 +12,26 @@ struct ContentView: View {
     }
 
     var body: some View {
-        GeometryReader { gr in
+//        GeometryReader { gr in
             HStack {
                 VStack {
                     AppSettingsView()
-                    if $arenaScene.layerStack.layers.count > 0 {
-                        LayerSlidersGroupView()
-                            .environmentObject(arenaScene.layerStack.layers[0])
+                    if !$arenaScene.layerStack.layers.isEmpty {
+                        LayerSettingsListView()
                     }
                 }
                 .frame(width: 300)
 
                 ArenaView()
-                    .frame(
-                        width: getSmallSide(from: gr.size),
-                        height: getSmallSide(from: gr.size),
-                        alignment: .topTrailing
-                    )
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .frame(
+//                        width: getSmallSide(from: gr.size),
+//                        height: getSmallSide(from: gr.size),
+//                        alignment: .topTrailing
+//                    )
+//                    .frame(width: 600, height: 600)
             }
             .environmentObject(arenaScene)
-        }
+//        }
     }
 }
 

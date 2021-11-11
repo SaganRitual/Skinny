@@ -11,8 +11,8 @@ class LayerStack: ObservableObject, RandomAccessCollection {
     subscript(position: Int) -> SpriteLayer { layers[position] }
 
     private let colors: [SKColor] = [
-//        .cyan, .magenta, .yellow, .red, .green
-        .clear, .clear, .clear, .clear, .clear
+        .cyan, .magenta, .yellow, .red, .green
+//        .clear, .clear, .clear, .clear, .clear
     ]
 
     private let initialRadiusFractions: [Double] = [

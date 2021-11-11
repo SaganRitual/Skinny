@@ -1,4 +1,4 @@
-import Foundation
+import CoreGraphics
 
 struct GridPoint: Overload2D, Numeric, Hashable {
     typealias IntegerLiteralType = Int

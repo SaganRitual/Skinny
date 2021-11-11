@@ -51,6 +51,14 @@
 		D49C87DF273CDA0800D986C0 /* SpritePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DD273CDA0800D986C0 /* SpritePool.swift */; };
 		D49C87E1273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */; };
 		D49C87E2273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */; };
+		D49C87E6273CF02900D986C0 /* LayerSettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E3273CF02900D986C0 /* LayerSettingsListView.swift */; };
+		D49C87E7273CF02900D986C0 /* LayerSettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E3273CF02900D986C0 /* LayerSettingsListView.swift */; };
+		D49C87E8273CF02900D986C0 /* LayerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E4273CF02900D986C0 /* LayerSettingsView.swift */; };
+		D49C87E9273CF02900D986C0 /* LayerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E4273CF02900D986C0 /* LayerSettingsView.swift */; };
+		D49C87EA273CF02900D986C0 /* LayerToggleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E5273CF02900D986C0 /* LayerToggleGroupView.swift */; };
+		D49C87EB273CF02900D986C0 /* LayerToggleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E5273CF02900D986C0 /* LayerToggleGroupView.swift */; };
+		D4C83B64273CF7AF00ED86BC /* ArenaSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C83B61273CF76C00ED86BC /* ArenaSceneDelegate.swift */; };
+		D4C83B66273CF7BA00ED86BC /* ArenaSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C83B65273CF7B700ED86BC /* ArenaSceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +87,11 @@
 		D49C87DA273CBCD800D986C0 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 		D49C87DD273CDA0800D986C0 /* SpritePool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpritePool.swift; sourceTree = "<group>"; };
 		D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSlidersGroupView.swift; sourceTree = "<group>"; };
+		D49C87E3273CF02900D986C0 /* LayerSettingsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSettingsListView.swift; sourceTree = "<group>"; };
+		D49C87E4273CF02900D986C0 /* LayerSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSettingsView.swift; sourceTree = "<group>"; };
+		D49C87E5273CF02900D986C0 /* LayerToggleGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerToggleGroupView.swift; sourceTree = "<group>"; };
+		D4C83B61273CF76C00ED86BC /* ArenaSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaSceneDelegate.swift; sourceTree = "<group>"; };
+		D4C83B65273CF7B700ED86BC /* ArenaSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaSceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +115,7 @@
 		D49C877D273C775600D986C0 = {
 			isa = PBXGroup;
 			children = (
+				D4C83B63273CF7A400ED86BC /* iOS */,
 				D49C87CD273CBAFB00D986C0 /* .gitignore */,
 				D49C87D1273CBB0A00D986C0 /* .overcommit.yml */,
 				D49C87D0273CBB0A00D986C0 /* .swiftlint.yml */,
@@ -139,6 +153,7 @@
 		D49C8791273C775800D986C0 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				D4C83B65273CF7B700ED86BC /* ArenaSceneDelegate.swift */,
 				D49C8792273C775800D986C0 /* macOS.entitlements */,
 			);
 			path = macOS;
@@ -180,7 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				D49C87BC273C95CA00D986C0 /* AppSettingsView.swift */,
+				D49C87E3273CF02900D986C0 /* LayerSettingsListView.swift */,
+				D49C87E4273CF02900D986C0 /* LayerSettingsView.swift */,
 				D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */,
+				D49C87E5273CF02900D986C0 /* LayerToggleGroupView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -192,6 +210,14 @@
 				D49C87C2273C971500D986C0 /* ToggleView.swift */,
 			);
 			path = ViewPrimitives;
+			sourceTree = "<group>";
+		};
+		D4C83B63273CF7A400ED86BC /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D4C83B61273CF76C00ED86BC /* ArenaSceneDelegate.swift */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,7 +355,10 @@
 				D49C87B0273C788100D986C0 /* Deque.swift in Sources */,
 				D49C87AE273C788100D986C0 /* GridPoint.swift in Sources */,
 				D49C8795273C775800D986C0 /* ContentView.swift in Sources */,
+				D49C87EA273CF02900D986C0 /* LayerToggleGroupView.swift in Sources */,
+				D4C83B64273CF7AF00ED86BC /* ArenaSceneDelegate.swift in Sources */,
 				D49C87E1273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */,
+				D49C87E6273CF02900D986C0 /* LayerSettingsListView.swift in Sources */,
 				D49C87B4273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8793273C775800D986C0 /* SkinnyApp.swift in Sources */,
 				D49C87DB273CBCD800D986C0 /* Sprite.swift in Sources */,
@@ -338,6 +367,7 @@
 				D49C87CB273CB21D00D986C0 /* LayerStack.swift in Sources */,
 				D49C87C3273C971500D986C0 /* SliderView.swift in Sources */,
 				D49C87B2273C788100D986C0 /* Extensions.swift in Sources */,
+				D49C87E8273CF02900D986C0 /* LayerSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +383,10 @@
 				D49C87B1273C788100D986C0 /* Deque.swift in Sources */,
 				D49C87AF273C788100D986C0 /* GridPoint.swift in Sources */,
 				D49C8796273C775800D986C0 /* ContentView.swift in Sources */,
+				D49C87EB273CF02900D986C0 /* LayerToggleGroupView.swift in Sources */,
+				D4C83B66273CF7BA00ED86BC /* ArenaSceneDelegate.swift in Sources */,
 				D49C87E2273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */,
+				D49C87E7273CF02900D986C0 /* LayerSettingsListView.swift in Sources */,
 				D49C87B5273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8794273C775800D986C0 /* SkinnyApp.swift in Sources */,
 				D49C87DC273CBCD800D986C0 /* Sprite.swift in Sources */,
@@ -362,6 +395,7 @@
 				D49C87CC273CB21D00D986C0 /* LayerStack.swift in Sources */,
 				D49C87C4273C971500D986C0 /* SliderView.swift in Sources */,
 				D49C87B3273C788100D986C0 /* Extensions.swift in Sources */,
+				D49C87E9273CF02900D986C0 /* LayerSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

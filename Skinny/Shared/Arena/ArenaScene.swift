@@ -31,35 +31,10 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         )
 
         layerStack.addLayer(parentSKNode: ringo)
-        layerStack.addLayer(parentSKNode: layerStack[0].ringShape)
-        layerStack.addLayer(parentSKNode: layerStack[1].ringShape)
+//        layerStack.addLayer(parentSKNode: layerStack[0].ringShape)
+//        layerStack.addLayer(parentSKNode: layerStack[1].ringShape)
 
         readyToRun = true
-    }
-
-    override func didEvaluateActions() {
-        let hue = Double(tickCount % 600) / 600
-        let color = NSColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
-
-        for ix in 0..<layerStack.count {
-            let easyDot = dotsPool.makeSprite()
-            easyDot.size = CGSize(width: 5, height: 5)
-            easyDot.color = color
-            easyDot.alpha = 0.85
-
-            let pen = layerStack[ix].penShape
-            let penTip = layerStack[ix].penTipShape
-            let dotPosition = pen.convert(penTip.position, to: self)
-
-            easyDot.position = dotPosition
-            self.addChild(easyDot)
-
-            let pathFadeDurationSeconds = AppSettingsView.pathFadeDurationSeconds * self.speed
-            let fade = SKAction.fadeOut(withDuration: pathFadeDurationSeconds)
-            easyDot.run(fade) {
-                self.dotsPool.releaseSprite(easyDot)
-            }
-        }
     }
 
     override func update(_ currentTime: TimeInterval) {

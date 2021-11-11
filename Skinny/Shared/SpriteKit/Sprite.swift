@@ -16,10 +16,10 @@ enum Sprite {
         let penSpinAction = SKAction.rotate(byAngle: -direction, duration: penCycleDuration)
         let penSpinForever = SKAction.repeatForever(penSpinAction)
 
-        let spinAction = SKAction.rotate(byAngle: direction, duration: ringCycleDuration)
+        let spinAction = SKAction.rotate(byAngle: -direction, duration: ringCycleDuration)
         let spinForever = SKAction.repeatForever(spinAction)
 
-        let compensateAction = SKAction.rotate(byAngle: -direction, duration: ringCycleDuration)
+        let compensateAction = SKAction.rotate(byAngle: direction, duration: ringCycleDuration)
         let compensateForever = SKAction.repeatForever(compensateAction)
 
         compensatorShape.run(compensateForever)
@@ -114,7 +114,7 @@ enum Sprite {
     static func makeRadiusShape(
         parentSKNode: SKNode, radius: Double, color: SKColor
     ) -> SKShapeNode {
-        var pRadius: [CGPoint] = [CGPoint(x: 0, y: 0), CGPoint(x: radius, y: 0)]
+        var pRadius: [CGPoint] = [CGPoint(x: parentSKNode.frame.size.width / 2, y: 0), CGPoint(x: (parentSKNode.frame.size.width / 2) - radius, y: 0)]
 
         let radiusShape = SKShapeNode(points: &pRadius, count: 2)
         radiusShape.strokeColor = color
