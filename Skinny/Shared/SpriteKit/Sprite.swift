@@ -10,8 +10,8 @@ enum Sprite {
     ) {
         let direction = Double.tau * ((layerIndex % 2 == 0) ? 1.0 : -1.0)
         let ringCycleDuration = 1.0// 1 / settings.rotationRateHz
-        let ringRadius = radiusShape.frame.size.effectiveRadius
-        let penCycleDuration = ringCycleDuration * (ringRadius / parentRingRadius)
+        let ringRadius = radiusShape.frame.size.width / 2
+        let penCycleDuration = ringCycleDuration * (parentRingRadius / ringRadius)
 
         let penSpinAction = SKAction.rotate(byAngle: -direction, duration: penCycleDuration)
         let penSpinForever = SKAction.repeatForever(penSpinAction)
@@ -103,12 +103,9 @@ enum Sprite {
 
     static func makePenTipShape(
         parentSKNode: SKNode, penLength: Double
-    ) -> SKShapeNode {
-
-        let penTip = SKShapeNode(circleOfRadius: 10)
+    ) -> SKNode {
+        let penTip = SKNode()
         penTip.position = CGPoint(x: penLength, y: 0)
-        penTip.strokeColor = .yellow
-        penTip.fillColor = .yellow
 
         parentSKNode.addChild(penTip)
         return penTip

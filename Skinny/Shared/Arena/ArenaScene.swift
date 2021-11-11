@@ -25,7 +25,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
     }
 
     override func didMove(to view: SKView) {
-        let sceneRadius = self.frame.size.effectiveRadius
+        let sceneRadius = self.frame.size.width / 2
         self.ringo = Sprite.makeMainRing(
             parentSKNode: self, radius: 0.95 * sceneRadius, color: .blue
         )

@@ -16,7 +16,7 @@ struct AppSettingsView: View {
         VStack {
             HStack {
                 SliderView(
-                    label: "Carousel", labellet: "Hz", range: -5...5, step: 0.5,
+                    label: "Carousel", labellet: "Hz", range: -1.5...1.5, step: 0.1,
                     value: $carouselHz
                 )
                 .padding(.trailing, 10)
@@ -31,7 +31,7 @@ struct AppSettingsView: View {
 
             HStack {
                 SliderView(
-                    label: "Drive rate", labellet: "Hz", range: -5...5, step: 0.5,
+                    label: "Drive rate", labellet: "Hz", range: -1.5...1.5, step: 0.1,
                     value: $driveRateHz
                 )
                 .padding(.trailing, 10)
@@ -46,7 +46,7 @@ struct AppSettingsView: View {
 
             HStack {
                 SliderView(
-                    label: "Speed", labellet: "X", range: 0...5, step: 0.2,
+                    label: "Speed", labellet: "X", range: 0...2, step: 0.05,
                     value: $runSpeed
                 )
                 .padding(.trailing, 10)
@@ -61,8 +61,8 @@ struct AppSettingsView: View {
             }
 
             HStack {
-                SliderView(label: "Zoom", labellet: "X", range: 0...5,
-                           step: 0.25, value: $zoomLevel
+                SliderView(label: "Zoom", labellet: "X", range: 0...3,
+                           step: 0.1, value: $zoomLevel
                 )
                 .padding(.trailing, 10)
                 .controlSize(.small)

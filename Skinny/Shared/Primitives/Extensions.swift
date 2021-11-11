@@ -2,10 +2,6 @@
 
 import Foundation
 
-extension CGSize {
-    var effectiveRadius: CGFloat { min(width, height) / 2 }
-}
-
 extension CGFloat {
     static let tau = CGFloat.pi * 2
 }

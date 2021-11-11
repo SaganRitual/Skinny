@@ -16,7 +16,7 @@ class SpriteLayer: ObservableObject, Identifiable {
 
     let compensatorShape: SKShapeNode
     let penShape: SKShapeNode
-    let penTipShape: SKShapeNode
+    let penTipShape: SKNode
     let radiusShape: SKShapeNode
     let ringShape: SKShapeNode
 
@@ -24,7 +24,7 @@ class SpriteLayer: ObservableObject, Identifiable {
         layerIndex: Int, parentSKNode: SKNode,
         color: SKColor, radiusFraction: Double
     ) {
-        let parentRadius = parentSKNode.frame.size.effectiveRadius
+        let parentRadius = parentSKNode.frame.size.width / 2
         let mRadius = radiusFraction * parentRadius
 
         self.radiusShape = Sprite.makeRadiusShape(
