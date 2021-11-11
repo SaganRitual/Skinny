@@ -2,7 +2,7 @@
 
 import SwiftUI
 
-struct DashboardView: View {
+struct AppSettingsView: View {
     @EnvironmentObject var arenaScene: ArenaScene
 
     @State var carouselHz = 0.0
@@ -16,7 +16,7 @@ struct DashboardView: View {
         VStack {
             HStack {
                 SliderView(
-                    label: "Carousel", labellet: "Hz", range: -5...5, step: 1,
+                    label: "Carousel", labellet: "Hz", range: -5...5, step: 0.5,
                     value: $carouselHz
                 )
                 .padding(.trailing, 10)
@@ -31,7 +31,7 @@ struct DashboardView: View {
 
             HStack {
                 SliderView(
-                    label: "Drive rate", labellet: "Hz", range: -5...5, step: 1,
+                    label: "Drive rate", labellet: "Hz", range: -5...5, step: 0.5,
                     value: $driveRateHz
                 )
                 .padding(.trailing, 10)
@@ -41,12 +41,12 @@ struct DashboardView: View {
                 .minimumScaleFactor(1)
                 .lineLimit(1)
                 .help("Orbit rate of the first inner ring; drives all the movement")
-                .onChange(of: driveRateHz) { arenaScene.setDriveRate(X: $0) }
+                .onChange(of: driveRateHz) { arenaScene.setDriveRate($0) }
             }
 
             HStack {
                 SliderView(
-                    label: "Speed", labellet: "X", range: 0...10, step: 1,
+                    label: "Speed", labellet: "X", range: 0...5, step: 0.2,
                     value: $runSpeed
                 )
                 .padding(.trailing, 10)
@@ -56,12 +56,13 @@ struct DashboardView: View {
                 .minimumScaleFactor(1)
                 .lineLimit(1)
                 .help("Ratio of run time to wall time")
+                .onAppear { arenaScene.setRunSpeed(X: runSpeed) }
                 .onChange(of: runSpeed) { arenaScene.setRunSpeed(X: $0) }
             }
 
             HStack {
-                SliderView(label: "Zoom", labellet: "X", range: 0.5...10,
-                           step: 0.5, value: $zoomLevel
+                SliderView(label: "Zoom", labellet: "X", range: 0...5,
+                           step: 0.25, value: $zoomLevel
                 )
                 .padding(.trailing, 10)
                 .controlSize(.small)

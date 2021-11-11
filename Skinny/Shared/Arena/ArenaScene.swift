@@ -3,6 +3,8 @@
 import SpriteKit
 
 class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
+    @Published var readyToRun = false
+
     private var ringo: SKShapeNode!
 
     var layerStack = LayerStack()
@@ -10,26 +12,23 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
     override init(size: CGSize) {
         super.init(size: size)
 
-//        let compensator = Layer.makeCompensator(parentSKNode: self)
-//
-//        ringo = Layer.makeMainRing(parentSKNode: compensator, radius: 0.95 * size.width / 2, color: .green)
-
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-
-        let sceneRadius = self.frame.size.width / 2
-        self.ringo = Sprites.makeRingShape(
-            parentSKNode: self, radius: 0.95 * sceneRadius, color: .blue
-        )
-
-//        layerStack.addLayer(parentSKNode: ringo)
-
-//        let spin = SKAction.rotate(byAngle: .tau, duration: 2)
-//        let spinForever = SKAction.repeatForever(spin)
-//        ringo.run(spinForever)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func didMove(to view: SKView) {
+
+        let sceneRadius = self.frame.size.effectiveRadius
+        self.ringo = Sprite.makeMainRing(
+            parentSKNode: self, radius: 0.95 * sceneRadius, color: .blue
+        )
+
+        layerStack.addLayer(parentSKNode: ringo)
+
+        readyToRun = true
     }
 }
 
@@ -38,7 +37,7 @@ extension ArenaScene {
         ringo.removeAllActions()
 
         if carouselHz == 0 { return }
-        let angle = sign(carouselHz) * .tau
+        let angle = sign(carouselHz) * carouselHz * .tau
 
         let rotate = SKAction.rotate(byAngle: angle, duration: 1 / abs(carouselHz))
         let rotateForever = SKAction.repeatForever(rotate)
@@ -49,15 +48,22 @@ extension ArenaScene {
 
 
 extension ArenaScene {
-    func setDriveRate(X: Double) {
-//        layerStack[0].ringShape.removeAllActions()
-//
-//        if hz == 0 { return }
-//
-//        let rotate = SKAction.rotate(byAngle: .tau, duration: 1 / hz)
-//        let rotateForever = SKAction.repeatForever(rotate)
-//
-//        layerStack[0].ringShape.run(rotateForever)
+    func setDriveRate(_ driveHz: Double) {
+        let driverRing = layerStack[0].radiusShape
+        let driverCompensator = layerStack[0].compensatorShape
+
+        driverRing.removeAllActions()
+        driverCompensator.removeAllActions()
+
+        if driveHz == 0 { return }
+        let angle = sign(driveHz) * .tau
+        let duration = 1 / abs(driveHz)
+
+        let rotate = SKAction.rotate(byAngle: angle, duration: duration)
+        let antiRotate = SKAction.rotate(byAngle: -angle, duration: duration)
+
+        driverRing.run(SKAction.repeatForever(rotate))
+        driverCompensator.run(SKAction.repeatForever(antiRotate))
     }
 }
 

@@ -14,8 +14,10 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { gr in
             HStack {
-                DashboardView()
-                    .frame(width: 300)
+                if arenaScene.readyToRun {
+                    AppSettingsView()
+                        .frame(width: 300)
+                }
 
 //                VStack {
 //                    AppSettingsView()

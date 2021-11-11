@@ -2,62 +2,7 @@
 
 import SpriteKit
 
-class Layer: ObservableObject, Identifiable {
-    let id = UUID()
-
-    @Published var showCenters = true
-    @Published var showPen = true
-    @Published var showRadius = true
-    @Published var showRing = true
-
-    @Published var parentRadius: Double
-    @Published var penLength = 1.0
-    @Published var radiusFraction: Double
-
-    let compensatorShape: SKShapeNode
-    let penShape: SKShapeNode
-    let penTipShape: SKShapeNode
-    let radiusShape: SKShapeNode
-    let ringShape: SKShapeNode
-
-    init(
-        layerIndex: Int, parentSKNode: SKNode,
-        color: SKColor, radiusFraction: Double
-    ) {
-        let parentRadius = parentSKNode.frame.width / 2
-        let mRadius = radiusFraction * parentRadius
-
-        self.radiusShape = Layer.makeRadiusShape(
-            parentSKNode: parentSKNode, radius: mRadius, color: color
-        )
-
-        self.compensatorShape = Layer.makeCompensator(parentSKNode: radiusShape)
-
-        self.ringShape = Layer.makeMainRing(
-            parentSKNode: compensatorShape, radius: mRadius, color: color
-        )
-
-        self.penShape = Layer.makePenShape(
-            parentSKNode: compensatorShape, radius: mRadius, color: color)
-
-        self.penTipShape = Layer.makePenTipShape(
-            parentSKNode: penShape, penLength: mRadius
-        )
-
-        self.radiusFraction = radiusFraction
-        self.parentRadius = parentRadius
-
-        if layerIndex > 0 { return }
-
-        Layer.startActions(
-            layerIndex: layerIndex, compensatorShape: compensatorShape,
-            penShape: penShape, radiusShape: radiusShape,
-            parentRingRadius: parentRadius
-        )
-    }
-}
-
-private extension Layer {
+enum Sprite {
     static func startActions(
         layerIndex: Int, compensatorShape: SKShapeNode,
         penShape: SKShapeNode, radiusShape: SKShapeNode,
@@ -65,7 +10,7 @@ private extension Layer {
     ) {
         let direction = Double.tau * ((layerIndex % 2 == 0) ? 1.0 : -1.0)
         let ringCycleDuration = 1.0// 1 / settings.rotationRateHz
-        let ringRadius = radiusShape.frame.size.width / 2
+        let ringRadius = radiusShape.frame.size.effectiveRadius
         let penCycleDuration = ringCycleDuration * (ringRadius / parentRingRadius)
 
         let penSpinAction = SKAction.rotate(byAngle: -direction, duration: penCycleDuration)
@@ -81,17 +26,38 @@ private extension Layer {
         penShape.run(penSpinForever)
         radiusShape.run(spinForever)
     }
-}
 
-extension Layer {
-    static func makeCompensator(parentSKNode: SKNode) -> SKShapeNode {
+    /*
+
+     let direction = Double.tau * ((layerIndex % 2 == 0) ? -1.0 : 1.0)
+     let ringCycleDuration = 1.0// 1 / settings.rotationRateHz
+     let penCycleDuration = ringCycleDuration * (ringRadius / parentLayer.ringRadius())
+
+     let penSpinAction = SKAction.rotate(byAngle: -direction, duration: penCycleDuration)
+     let penSpinForever = SKAction.repeatForever(penSpinAction)
+
+     let spinAction = SKAction.rotate(byAngle: direction, duration: ringCycleDuration)
+     let spinForever = SKAction.repeatForever(spinAction)
+
+     let compensateAction = SKAction.rotate(byAngle: -direction, duration: ringCycleDuration)
+     let compensateForever = SKAction.repeatForever(compensateAction)
+
+     compensator.run(compensateForever)
+     penShape.run(penSpinForever)
+     spacerShape.run(spinForever)
+
+     */
+
+    static func makeCompensator(
+        parentSKNode: SKNode, radius: Double
+    ) -> SKShapeNode {
         let sCompensator = CGSize(width: 1, height: 1)
         let oCompensator = CGPoint(x: -0.5, y: -0.5)
         let rCompensator = CGRect(origin: oCompensator, size: sCompensator)
 
         let compensatorShape = SKShapeNode(rect: rCompensator)
 
-        compensatorShape.position = .zero
+        compensatorShape.position = CGPoint(x: radius, y: 0)
         compensatorShape.fillColor = .blue
         compensatorShape.strokeColor = .clear
 
@@ -118,9 +84,7 @@ extension Layer {
 
         return ringShape
     }
-}
 
-private extension Layer {
     static func makePenShape(
         parentSKNode: SKNode, radius: Double, color: SKColor
     ) -> SKShapeNode {

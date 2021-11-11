@@ -101,7 +101,6 @@ extension Overload2D {
 // MARK: Polar coordinates
 
 extension Overload2D {
-    var radius: CGFloat { return hypotenuse }
     var theta: CGFloat { return atan2(bb, aa) }
 
     static func polar(radius: CGFloat, theta: CGFloat) -> Self {

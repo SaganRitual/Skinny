@@ -27,18 +27,26 @@
 		D49C87B5273C788100D986C0 /* Overload2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87AC273C788100D986C0 /* Overload2D.swift */; };
 		D49C87B6273C788100D986C0 /* TriangleFormulae.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87AD273C788100D986C0 /* TriangleFormulae.swift */; };
 		D49C87B7273C788100D986C0 /* TriangleFormulae.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87AD273C788100D986C0 /* TriangleFormulae.swift */; };
-		D49C87BA273C794E00D986C0 /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87B9273C794E00D986C0 /* Sprites.swift */; };
-		D49C87BB273C794E00D986C0 /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87B9273C794E00D986C0 /* Sprites.swift */; };
-		D49C87BD273C95CA00D986C0 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87BC273C95CA00D986C0 /* DashboardView.swift */; };
-		D49C87BE273C95CA00D986C0 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87BC273C95CA00D986C0 /* DashboardView.swift */; };
+		D49C87BD273C95CA00D986C0 /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87BC273C95CA00D986C0 /* AppSettingsView.swift */; };
+		D49C87BE273C95CA00D986C0 /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87BC273C95CA00D986C0 /* AppSettingsView.swift */; };
 		D49C87C3273C971500D986C0 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C1273C971500D986C0 /* SliderView.swift */; };
 		D49C87C4273C971500D986C0 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C1273C971500D986C0 /* SliderView.swift */; };
 		D49C87C5273C971500D986C0 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C2273C971500D986C0 /* ToggleView.swift */; };
 		D49C87C6273C971500D986C0 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C2273C971500D986C0 /* ToggleView.swift */; };
-		D49C87C8273CB1DD00D986C0 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C7273CB1DD00D986C0 /* Layer.swift */; };
-		D49C87C9273CB1DD00D986C0 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C7273CB1DD00D986C0 /* Layer.swift */; };
+		D49C87C8273CB1DD00D986C0 /* SpriteLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C7273CB1DD00D986C0 /* SpriteLayer.swift */; };
+		D49C87C9273CB1DD00D986C0 /* SpriteLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87C7273CB1DD00D986C0 /* SpriteLayer.swift */; };
 		D49C87CB273CB21D00D986C0 /* LayerStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87CA273CB21D00D986C0 /* LayerStack.swift */; };
 		D49C87CC273CB21D00D986C0 /* LayerStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87CA273CB21D00D986C0 /* LayerStack.swift */; };
+		D49C87CE273CBAFB00D986C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D49C87CD273CBAFB00D986C0 /* .gitignore */; };
+		D49C87CF273CBAFB00D986C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D49C87CD273CBAFB00D986C0 /* .gitignore */; };
+		D49C87D3273CBB0A00D986C0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D49C87D0273CBB0A00D986C0 /* .swiftlint.yml */; };
+		D49C87D4273CBB0A00D986C0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D49C87D0273CBB0A00D986C0 /* .swiftlint.yml */; };
+		D49C87D5273CBB0A00D986C0 /* .overcommit.yml in Resources */ = {isa = PBXBuildFile; fileRef = D49C87D1273CBB0A00D986C0 /* .overcommit.yml */; };
+		D49C87D6273CBB0A00D986C0 /* .overcommit.yml in Resources */ = {isa = PBXBuildFile; fileRef = D49C87D1273CBB0A00D986C0 /* .overcommit.yml */; };
+		D49C87D7273CBB0A00D986C0 /* swiftlint.sh in Resources */ = {isa = PBXBuildFile; fileRef = D49C87D2273CBB0A00D986C0 /* swiftlint.sh */; };
+		D49C87D8273CBB0A00D986C0 /* swiftlint.sh in Resources */ = {isa = PBXBuildFile; fileRef = D49C87D2273CBB0A00D986C0 /* swiftlint.sh */; };
+		D49C87DB273CBCD800D986C0 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DA273CBCD800D986C0 /* Sprite.swift */; };
+		D49C87DC273CBCD800D986C0 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DA273CBCD800D986C0 /* Sprite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,12 +63,16 @@
 		D49C87AB273C788100D986C0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D49C87AC273C788100D986C0 /* Overload2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Overload2D.swift; sourceTree = "<group>"; };
 		D49C87AD273C788100D986C0 /* TriangleFormulae.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleFormulae.swift; sourceTree = "<group>"; };
-		D49C87B9273C794E00D986C0 /* Sprites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprites.swift; sourceTree = "<group>"; };
-		D49C87BC273C95CA00D986C0 /* DashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		D49C87BC273C95CA00D986C0 /* AppSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
 		D49C87C1273C971500D986C0 /* SliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		D49C87C2273C971500D986C0 /* ToggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleView.swift; sourceTree = "<group>"; };
-		D49C87C7273CB1DD00D986C0 /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		D49C87C7273CB1DD00D986C0 /* SpriteLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteLayer.swift; sourceTree = "<group>"; };
 		D49C87CA273CB21D00D986C0 /* LayerStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerStack.swift; sourceTree = "<group>"; };
+		D49C87CD273CBAFB00D986C0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		D49C87D0273CBB0A00D986C0 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		D49C87D1273CBB0A00D986C0 /* .overcommit.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .overcommit.yml; sourceTree = "<group>"; };
+		D49C87D2273CBB0A00D986C0 /* swiftlint.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = swiftlint.sh; sourceTree = "<group>"; };
+		D49C87DA273CBCD800D986C0 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +96,10 @@
 		D49C877D273C775600D986C0 = {
 			isa = PBXGroup;
 			children = (
+				D49C87CD273CBAFB00D986C0 /* .gitignore */,
+				D49C87D1273CBB0A00D986C0 /* .overcommit.yml */,
+				D49C87D0273CBB0A00D986C0 /* .swiftlint.yml */,
+				D49C87D2273CBB0A00D986C0 /* swiftlint.sh */,
 				D49C8782273C775600D986C0 /* Shared */,
 				D49C8791273C775800D986C0 /* macOS */,
 				D49C878B273C775800D986C0 /* Products */,
@@ -127,7 +143,6 @@
 			children = (
 				D49C87A5273C77EB00D986C0 /* ArenaScene.swift */,
 				D49C87A2273C77AC00D986C0 /* ArenaView.swift */,
-				D49C87C7273CB1DD00D986C0 /* Layer.swift */,
 				D49C87CA273CB21D00D986C0 /* LayerStack.swift */,
 			);
 			path = Arena;
@@ -148,7 +163,8 @@
 		D49C87B8273C790C00D986C0 /* SpriteKit */ = {
 			isa = PBXGroup;
 			children = (
-				D49C87B9273C794E00D986C0 /* Sprites.swift */,
+				D49C87C7273CB1DD00D986C0 /* SpriteLayer.swift */,
+				D49C87DA273CBCD800D986C0 /* Sprite.swift */,
 			);
 			path = SpriteKit;
 			sourceTree = "<group>";
@@ -156,7 +172,7 @@
 		D49C87BF273C95D500D986C0 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				D49C87BC273C95CA00D986C0 /* DashboardView.swift */,
+				D49C87BC273C95CA00D986C0 /* AppSettingsView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -177,6 +193,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D49C879B273C775800D986C0 /* Build configuration list for PBXNativeTarget "Skinny (iOS)" */;
 			buildPhases = (
+				D49C87D9273CBB1900D986C0 /* ShellScript */,
 				D49C8786273C775800D986C0 /* Sources */,
 				D49C8787273C775800D986C0 /* Frameworks */,
 				D49C8788273C775800D986C0 /* Resources */,
@@ -249,6 +266,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D49C87D3273CBB0A00D986C0 /* .swiftlint.yml in Resources */,
+				D49C87CE273CBAFB00D986C0 /* .gitignore in Resources */,
+				D49C87D7273CBB0A00D986C0 /* swiftlint.sh in Resources */,
+				D49C87D5273CBB0A00D986C0 /* .overcommit.yml in Resources */,
 				D49C8797273C775800D986C0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,11 +278,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D49C87D4273CBB0A00D986C0 /* .swiftlint.yml in Resources */,
+				D49C87CF273CBAFB00D986C0 /* .gitignore in Resources */,
+				D49C87D8273CBB0A00D986C0 /* swiftlint.sh in Resources */,
+				D49C87D6273CBB0A00D986C0 /* .overcommit.yml in Resources */,
 				D49C8798273C775800D986C0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D49C87D9273CBB1900D986C0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n./swiftlint.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D49C8786273C775800D986C0 /* Sources */ = {
@@ -270,15 +315,15 @@
 			files = (
 				D49C87A6273C77EB00D986C0 /* ArenaScene.swift in Sources */,
 				D49C87A3273C77AC00D986C0 /* ArenaView.swift in Sources */,
-				D49C87BD273C95CA00D986C0 /* DashboardView.swift in Sources */,
-				D49C87C8273CB1DD00D986C0 /* Layer.swift in Sources */,
-				D49C87BA273C794E00D986C0 /* Sprites.swift in Sources */,
+				D49C87BD273C95CA00D986C0 /* AppSettingsView.swift in Sources */,
+				D49C87C8273CB1DD00D986C0 /* SpriteLayer.swift in Sources */,
 				D49C87B6273C788100D986C0 /* TriangleFormulae.swift in Sources */,
 				D49C87B0273C788100D986C0 /* Deque.swift in Sources */,
 				D49C87AE273C788100D986C0 /* GridPoint.swift in Sources */,
 				D49C8795273C775800D986C0 /* ContentView.swift in Sources */,
 				D49C87B4273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8793273C775800D986C0 /* SkinnyApp.swift in Sources */,
+				D49C87DB273CBCD800D986C0 /* Sprite.swift in Sources */,
 				D49C87C5273C971500D986C0 /* ToggleView.swift in Sources */,
 				D49C87CB273CB21D00D986C0 /* LayerStack.swift in Sources */,
 				D49C87C3273C971500D986C0 /* SliderView.swift in Sources */,
@@ -292,15 +337,15 @@
 			files = (
 				D49C87A7273C77EB00D986C0 /* ArenaScene.swift in Sources */,
 				D49C87A4273C77AC00D986C0 /* ArenaView.swift in Sources */,
-				D49C87BE273C95CA00D986C0 /* DashboardView.swift in Sources */,
-				D49C87C9273CB1DD00D986C0 /* Layer.swift in Sources */,
-				D49C87BB273C794E00D986C0 /* Sprites.swift in Sources */,
+				D49C87BE273C95CA00D986C0 /* AppSettingsView.swift in Sources */,
+				D49C87C9273CB1DD00D986C0 /* SpriteLayer.swift in Sources */,
 				D49C87B7273C788100D986C0 /* TriangleFormulae.swift in Sources */,
 				D49C87B1273C788100D986C0 /* Deque.swift in Sources */,
 				D49C87AF273C788100D986C0 /* GridPoint.swift in Sources */,
 				D49C8796273C775800D986C0 /* ContentView.swift in Sources */,
 				D49C87B5273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8794273C775800D986C0 /* SkinnyApp.swift in Sources */,
+				D49C87DC273CBCD800D986C0 /* Sprite.swift in Sources */,
 				D49C87C6273C971500D986C0 /* ToggleView.swift in Sources */,
 				D49C87CC273CB21D00D986C0 /* LayerStack.swift in Sources */,
 				D49C87C4273C971500D986C0 /* SliderView.swift in Sources */,

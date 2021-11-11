@@ -10,9 +10,6 @@ struct SliderView: View {
 
     @Binding var value: Double
 
-    let pub = NotificationCenter.default
-                .publisher(for: NSNotification.Name("ringRadius"))
-
     var body: some View {
         VStack {
             HStack {
@@ -22,7 +19,6 @@ struct SliderView: View {
                 Text("\(value.asString(decimals: 2))\(labellet)")
                     .frame(alignment: .trailing)
             }
-
 
             Slider(
                 value: $value,
