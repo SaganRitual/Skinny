@@ -7,9 +7,14 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 
     private var ringo: SKShapeNode!
 
+    let dotsPool: SpritePool
+
     var layerStack = LayerStack()
+    var tickCount = 0
 
     override init(size: CGSize) {
+        self.dotsPool = SpritePool("Markers", "circle-solid", cPreallocate: 10000)
+
         super.init(size: size)
 
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -20,7 +25,6 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
     }
 
     override func didMove(to view: SKView) {
-
         let sceneRadius = self.frame.size.effectiveRadius
         self.ringo = Sprite.makeMainRing(
             parentSKNode: self, radius: 0.95 * sceneRadius, color: .blue
@@ -29,6 +33,31 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         layerStack.addLayer(parentSKNode: ringo)
 
         readyToRun = true
+    }
+
+    override func didEvaluateActions() {
+        let hue = Double(tickCount % 600) / 600
+        let color = NSColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
+
+        for ix in 0..<layerStack.count {
+            let easyDot = dotsPool.makeSprite()
+            easyDot.size = CGSize(width: 5, height: 5)
+            easyDot.color = color
+            easyDot.alpha = 0.85
+
+            let pen = layerStack[ix].penShape
+            let penTip = layerStack[ix].penTipShape
+            let dotPosition = pen.convert(penTip.position, to: self)
+
+            easyDot.position = dotPosition
+            self.addChild(easyDot)
+
+            let pathFadeDurationSeconds = AppSettingsView.pathFadeDurationSeconds * self.speed
+            let fade = SKAction.fadeOut(withDuration: pathFadeDurationSeconds)
+            easyDot.run(fade) {
+                self.dotsPool.releaseSprite(easyDot)
+            }
+        }
     }
 }
 
@@ -45,7 +74,6 @@ extension ArenaScene {
         ringo.run(rotateForever)
     }
 }
-
 
 extension ArenaScene {
     func setDriveRate(_ driveHz: Double) {

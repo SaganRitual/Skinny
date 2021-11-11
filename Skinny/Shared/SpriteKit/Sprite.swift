@@ -97,7 +97,7 @@ enum Sprite {
         penShape.strokeColor = color
         penShape.zRotation += .tau / 4
 
-//        parentSKNode.addChild(penShape)
+        parentSKNode.addChild(penShape)
         return penShape
     }
 
@@ -105,11 +105,12 @@ enum Sprite {
         parentSKNode: SKNode, penLength: Double
     ) -> SKShapeNode {
 
-        let penTip = SKShapeNode(circleOfRadius: 2)
+        let penTip = SKShapeNode(circleOfRadius: 10)
         penTip.position = CGPoint(x: penLength, y: 0)
-        penTip.strokeColor = .clear
+        penTip.strokeColor = .yellow
+        penTip.fillColor = .yellow
 
-//        parentSKNode.addChild(penTip)
+        parentSKNode.addChild(penTip)
         return penTip
     }
 
