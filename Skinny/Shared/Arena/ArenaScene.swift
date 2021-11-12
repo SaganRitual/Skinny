@@ -25,33 +25,43 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         fatalError("init(coder:) has not been implemented")
     }
 
+    static let skCyan =    SKColor(calibratedRed: 0, green: 1, blue: 1, alpha: 0.005)
+    static let skMagenta = SKColor(calibratedRed: 1, green: 0, blue: 1, alpha: 0.005)
+    static let skOrange =  SKColor(calibratedRed: 1, green: 165.0/255.0, blue: 0, alpha: 0.005)
+    static let skGreen =   SKColor(calibratedRed: 0, green: 1, blue: 0, alpha: 0.005)
+
     override func didMove(to view: SKView) {
-        let sceneRadius = self.frame.size.width / 2
-        sceneRing = Sprite.makeMainRing(
-            parentSKNode: self, radius: 0.95 * sceneRadius, color: .blue
-        )
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
+        sceneRing = SKShapeNode(circleOfRadius: ContentView.sceneRadius)
+        sceneRing.strokeColor = ArenaScene.skCyan
+
+        self.addChild(sceneRing)
 
         let driveAngle0 = ArenaScene.baseDriveAngle
 
         layerStack.layers.append(SpriteLayer(
-            parentNode: sceneRing, color: .magenta,
-            radiusFraction: 0.5, driveAngle: driveAngle0
+            parentNode: self, color: ArenaScene.skMagenta,
+            radiusFraction: 0.75, driveAngle: driveAngle0,
+            runActions: true
         ))
 
         let driveAngle1 = -(1.0 / layerStack.initialRadiusFractions[0]) * driveAngle0
         let radiusFraction1 = layerStack.initialRadiusFractions[0]
 
         layerStack.layers.append(SpriteLayer(
-            parentNode: layerStack.layers[0].roller0, color: .orange,
-            radiusFraction: radiusFraction1, driveAngle: driveAngle1
+            parentNode: layerStack.layers[0].roller0, color: ArenaScene.skOrange,
+            radiusFraction: radiusFraction1, driveAngle: driveAngle1,
+            runActions: true
         ))
 
         let driveAngle2 = -(1.0 / layerStack.initialRadiusFractions[1]) * driveAngle1
         let radiusFraction2 = layerStack.initialRadiusFractions[1]
 
         layerStack.layers.append(SpriteLayer(
-            parentNode: layerStack.layers[1].roller0, color: .green,
-            radiusFraction: radiusFraction2, driveAngle: driveAngle2
+            parentNode: layerStack.layers[1].roller0, color: ArenaScene.skGreen,
+            radiusFraction: radiusFraction2, driveAngle: driveAngle2,
+            runActions: true
         ))
 
         readyToRun = true

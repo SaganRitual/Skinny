@@ -2,7 +2,7 @@
 
 import SpriteKit
 
-enum Sprite {
+enum Spritex {
     static func startActions(
         layerIndex: Int, compensatorShape: SKShapeNode,
         penShape: SKShapeNode, radiusShape: SKShapeNode,

@@ -51,7 +51,7 @@ class SpriteLayer: ObservableObject, Identifiable {
 
         if runActions == false { return }
 
-        let angle = driveAngle * parentRadius / primaryRadius
+        let angle = driveAngle * radiusFraction
         let spinAction = SKAction.rotate(byAngle: angle, duration: 1)
         let spinForever = SKAction.repeatForever(spinAction)
         spinner0.run(spinForever)

@@ -5,6 +5,8 @@ import SwiftUI
 
 struct ContentView: View {
     static private let size = CGSize(width: 400, height: 400)
+    static let sceneRadius = size.width / 2
+
     @StateObject var arenaScene = ArenaScene(size: ContentView.size)
 
     func getSmallSide(from size: CGSize) -> CGFloat {
