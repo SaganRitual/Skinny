@@ -34,19 +34,24 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         let driveAngle0 = ArenaScene.baseDriveAngle
 
         layerStack.layers.append(SpriteLayer(
-            parentNode: sceneRing, color: .magenta, driveAngle: driveAngle0
+            parentNode: sceneRing, color: .magenta,
+            radiusFraction: 0.5, driveAngle: driveAngle0
         ))
 
         let driveAngle1 = -(1.0 / layerStack.initialRadiusFractions[0]) * driveAngle0
+        let radiusFraction1 = layerStack.initialRadiusFractions[0]
 
         layerStack.layers.append(SpriteLayer(
-            parentNode: layerStack.layers[0].roller0, color: .orange, driveAngle: driveAngle1
+            parentNode: layerStack.layers[0].roller0, color: .orange,
+            radiusFraction: radiusFraction1, driveAngle: driveAngle1
         ))
 
         let driveAngle2 = -(1.0 / layerStack.initialRadiusFractions[1]) * driveAngle1
+        let radiusFraction2 = layerStack.initialRadiusFractions[1]
 
         layerStack.layers.append(SpriteLayer(
-            parentNode: layerStack.layers[1].roller0, color: .green, driveAngle: driveAngle2
+            parentNode: layerStack.layers[1].roller0, color: .green,
+            radiusFraction: radiusFraction2, driveAngle: driveAngle2
         ))
 
         readyToRun = true

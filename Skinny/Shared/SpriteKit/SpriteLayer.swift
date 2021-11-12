@@ -5,25 +5,33 @@ import SpriteKit
 class SpriteLayer: ObservableObject, Identifiable {
     let id = UUID()
 
+    @Published var showPen = true
+    @Published var showRadius = true
+    @Published var showCenters = true
+    @Published var showRing = true
+
+    @Published var penLength = 0.67
+
     let pen0: SKShapeNode
     let roller0: SKShapeNode
     let spinner0: SKShapeNode
 
-    let radiusFraction = 0.75
-    let radiusReciprocal = 0.25
+    @Published var radiusFraction = 0.75
+    @Published var radiusReciprocal = 0.25
 
     init(
-        parentNode: SKNode, color: SKColor, driveAngle: Double,
+        parentNode: SKNode, color: SKColor,
+        radiusFraction: Double, driveAngle: Double,
         runActions: Bool = true
     ) {
         let parentRadius = parentNode.frame.size.width / 2
-        let primaryRadius = parentRadius * radiusReciprocal
+        let primaryRadius = parentRadius * (1 - radiusFraction)
         let pRoller = CGPoint(x: primaryRadius, y: 0)
         roller0 = SKShapeNode(circleOfRadius: parentRadius * radiusFraction)
         roller0.position = pRoller
         roller0.strokeColor = color
 
-        spinner0 = SKShapeNode(circleOfRadius: parentRadius * radiusReciprocal)
+        spinner0 = SKShapeNode(circleOfRadius: parentRadius * (1 - radiusFraction))
         spinner0.strokeColor = color
 
         let pen0Fraction = 0.67
@@ -37,6 +45,9 @@ class SpriteLayer: ObservableObject, Identifiable {
         parentNode.addChild(spinner0)
         spinner0.addChild(roller0)
         roller0.addChild(pen0)
+
+        self.radiusFraction = radiusFraction
+        self.radiusReciprocal = 1 - radiusFraction
 
         if runActions == false { return }
 

@@ -57,6 +57,8 @@
 		D4C83B66273CF7BA00ED86BC /* ArenaSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C83B65273CF7B700ED86BC /* ArenaSceneDelegate.swift */; };
 		D4C83B87273DE37F00ED86BC /* SpriteLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C83B86273DE37F00ED86BC /* SpriteLayer.swift */; };
 		D4C83B88273DE37F00ED86BC /* SpriteLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C83B86273DE37F00ED86BC /* SpriteLayer.swift */; };
+		D4EFCE32273DECB600365773 /* LayerSlidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */; };
+		D4EFCE33273DECBA00365773 /* LayerToggleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E5273CF02900D986C0 /* LayerToggleGroupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -374,11 +376,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D49C87A7273C77EB00D986C0 /* ArenaScene.swift in Sources */,
+				D4EFCE32273DECB600365773 /* LayerSlidersGroupView.swift in Sources */,
 				D49C87A4273C77AC00D986C0 /* ArenaView.swift in Sources */,
 				D49C87BE273C95CA00D986C0 /* AppSettingsView.swift in Sources */,
 				D49C87B7273C788100D986C0 /* TriangleFormulae.swift in Sources */,
 				D49C87B1273C788100D986C0 /* Deque.swift in Sources */,
 				D49C87AF273C788100D986C0 /* GridPoint.swift in Sources */,
+				D4EFCE33273DECBA00365773 /* LayerToggleGroupView.swift in Sources */,
 				D49C8796273C775800D986C0 /* ContentView.swift in Sources */,
 				D4C83B66273CF7BA00ED86BC /* ArenaSceneDelegate.swift in Sources */,
 				D4C83B88273DE37F00ED86BC /* SpriteLayer.swift in Sources */,
