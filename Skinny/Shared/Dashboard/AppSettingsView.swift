@@ -10,7 +10,7 @@ struct AppSettingsView: View {
     @State var runSpeed = 0.1
     @State var zoomLevel = 1.0
 
-    static let pathFadeDurationSeconds = CGFloat(5)
+    static let pathFadeDurationSeconds = CGFloat(15)
 
     var body: some View {
         VStack {

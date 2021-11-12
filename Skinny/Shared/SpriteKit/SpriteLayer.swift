@@ -37,10 +37,12 @@ class SpriteLayer: ObservableObject, Identifiable {
         let pen0Fraction = 0.67
         let pen0Length = pen0Fraction * primaryRadius
         let pen0Origin = CGPoint.zero
-        let pen0Size = CGSize(width: pen0Length, height: 1)
-        let pen0Rect = CGRect(origin: pen0Origin, size: pen0Size)
-        pen0 = SKShapeNode(rect: pen0Rect)
-        pen0.strokeColor = color
+        let pen0Size = CGSize(width: pen0Length, height: 0.5)
+        var pen0Path = [pen0Origin, pen0Size.asPoint()]
+
+        pen0 = SKShapeNode(points: &pen0Path, count: 2)
+        pen0.strokeColor = color.withAlphaComponent(0.2)
+        pen0.lineWidth = 0.5
 
         parentNode.addChild(spinner0)
         spinner0.addChild(roller0)

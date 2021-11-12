@@ -14,11 +14,12 @@ extension ArenaScene {
             easyDot.color = color
             easyDot.alpha = 0.85
 
-            let xOtherEnd = layerStack[ix].pen0.frame.size.width - 2
+            let xOtherEnd = layerStack[ix].pen0.frame.size.width
             let pOtherEnd = CGPoint(x: xOtherEnd, y: 0)
             let dotPosition = layerStack[ix].pen0.convert(pOtherEnd, to: self)
 
             easyDot.position = dotPosition
+            easyDot.zRotation = layerStack[ix].pen0.zRotation
             self.addChild(easyDot)
 
             let pathFadeDurationSeconds = AppSettingsView.pathFadeDurationSeconds * self.speed

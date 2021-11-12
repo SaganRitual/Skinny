@@ -43,8 +43,6 @@
 		D49C87D6273CBB0A00D986C0 /* .overcommit.yml in Resources */ = {isa = PBXBuildFile; fileRef = D49C87D1273CBB0A00D986C0 /* .overcommit.yml */; };
 		D49C87D7273CBB0A00D986C0 /* swiftlint.sh in Resources */ = {isa = PBXBuildFile; fileRef = D49C87D2273CBB0A00D986C0 /* swiftlint.sh */; };
 		D49C87D8273CBB0A00D986C0 /* swiftlint.sh in Resources */ = {isa = PBXBuildFile; fileRef = D49C87D2273CBB0A00D986C0 /* swiftlint.sh */; };
-		D49C87DB273CBCD800D986C0 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DA273CBCD800D986C0 /* Sprite.swift */; };
-		D49C87DC273CBCD800D986C0 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DA273CBCD800D986C0 /* Sprite.swift */; };
 		D49C87DE273CDA0800D986C0 /* SpritePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DD273CDA0800D986C0 /* SpritePool.swift */; };
 		D49C87DF273CDA0800D986C0 /* SpritePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87DD273CDA0800D986C0 /* SpritePool.swift */; };
 		D49C87E1273CE49000D986C0 /* LayerSlidersGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */; };
@@ -83,7 +81,6 @@
 		D49C87D0273CBB0A00D986C0 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D49C87D1273CBB0A00D986C0 /* .overcommit.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .overcommit.yml; sourceTree = "<group>"; };
 		D49C87D2273CBB0A00D986C0 /* swiftlint.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = swiftlint.sh; sourceTree = "<group>"; };
-		D49C87DA273CBCD800D986C0 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 		D49C87DD273CDA0800D986C0 /* SpritePool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpritePool.swift; sourceTree = "<group>"; };
 		D49C87E0273CE49000D986C0 /* LayerSlidersGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSlidersGroupView.swift; sourceTree = "<group>"; };
 		D49C87E3273CF02900D986C0 /* LayerSettingsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSettingsListView.swift; sourceTree = "<group>"; };
@@ -184,7 +181,6 @@
 		D49C87B8273C790C00D986C0 /* SpriteKit */ = {
 			isa = PBXGroup;
 			children = (
-				D49C87DA273CBCD800D986C0 /* Sprite.swift */,
 				D49C87DD273CDA0800D986C0 /* SpritePool.swift */,
 				D4C83B86273DE37F00ED86BC /* SpriteLayer.swift */,
 			);
@@ -361,7 +357,6 @@
 				D49C87E6273CF02900D986C0 /* LayerSettingsListView.swift in Sources */,
 				D49C87B4273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8793273C775800D986C0 /* SkinnyApp.swift in Sources */,
-				D49C87DB273CBCD800D986C0 /* Sprite.swift in Sources */,
 				D49C87C5273C971500D986C0 /* ToggleView.swift in Sources */,
 				D49C87DE273CDA0800D986C0 /* SpritePool.swift in Sources */,
 				D49C87CB273CB21D00D986C0 /* LayerStack.swift in Sources */,
@@ -389,7 +384,6 @@
 				D49C87E7273CF02900D986C0 /* LayerSettingsListView.swift in Sources */,
 				D49C87B5273C788100D986C0 /* Overload2D.swift in Sources */,
 				D49C8794273C775800D986C0 /* SkinnyApp.swift in Sources */,
-				D49C87DC273CBCD800D986C0 /* Sprite.swift in Sources */,
 				D49C87C6273C971500D986C0 /* ToggleView.swift in Sources */,
 				D49C87DF273CDA0800D986C0 /* SpritePool.swift in Sources */,
 				D49C87CC273CB21D00D986C0 /* LayerStack.swift in Sources */,

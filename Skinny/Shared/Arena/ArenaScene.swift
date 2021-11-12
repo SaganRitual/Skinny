@@ -25,10 +25,10 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         fatalError("init(coder:) has not been implemented")
     }
 
-    static let skCyan =    SKColor(calibratedRed: 0, green: 1, blue: 1, alpha: 0.005)
-    static let skMagenta = SKColor(calibratedRed: 1, green: 0, blue: 1, alpha: 0.005)
-    static let skOrange =  SKColor(calibratedRed: 1, green: 165.0/255.0, blue: 0, alpha: 0.005)
-    static let skGreen =   SKColor(calibratedRed: 0, green: 1, blue: 0, alpha: 0.005)
+    static let skCyan =    SKColor(calibratedRed: 0, green: 1, blue: 1, alpha: 0.01)
+    static let skMagenta = SKColor(calibratedRed: 1, green: 0, blue: 1, alpha: 0.01)
+    static let skOrange =  SKColor(calibratedRed: 1, green: 165.0/255.0, blue: 0, alpha: 0.01)
+    static let skGreen =   SKColor(calibratedRed: 0, green: 1, blue: 0, alpha: 0.01)
 
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
