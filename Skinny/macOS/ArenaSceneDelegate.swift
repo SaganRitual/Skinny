@@ -6,7 +6,7 @@ extension ArenaScene {
     override func didEvaluateActions() {
 
         for ix in 0..<layerStack.count {
-            let hue = Double((tickCount + (ix * (600 / layerStack.count))) % 600) / 600
+            let hue = Double((tickCount + (ix * (300 / layerStack.count))) % 600) / 600
             let color = NSColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
 
             let easyDot = dotsPool.makeSprite()

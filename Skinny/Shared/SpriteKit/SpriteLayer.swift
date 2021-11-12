@@ -16,6 +16,9 @@ class SpriteLayer: ObservableObject, Identifiable {
     let roller0: SKShapeNode
     let spinner0: SKShapeNode
 
+    private let driveAngle: Double
+
+    @Published var driveAngleMultiplier = 1.0
     @Published var radiusFraction = 0.75
     @Published var radiusReciprocal = 0.25
 
@@ -50,16 +53,28 @@ class SpriteLayer: ObservableObject, Identifiable {
 
         self.radiusFraction = radiusFraction
         self.radiusReciprocal = 1 - radiusFraction
+        self.driveAngle = driveAngle * radiusFraction
 
-        if runActions == false { return }
+        if runActions { startActions(baseDriveAngle: driveAngle) }
+    }
 
-        let angle = driveAngle * radiusFraction
-        let spinAction = SKAction.rotate(byAngle: angle, duration: 1)
+    func startActions(baseDriveAngle: Double) {
+        spinner0.removeAllActions()
+        roller0.removeAllActions()
+
+        let driveAngle = self.driveAngleMultiplier * self.driveAngle
+
+        let spinAction = SKAction.rotate(byAngle: driveAngle, duration: 1)
         let spinForever = SKAction.repeatForever(spinAction)
         spinner0.run(spinForever)
 
-        let rollAction = SKAction.rotate(byAngle: -2 * angle, duration: 1)
+        let rollAction = SKAction.rotate(byAngle: -2 * driveAngle, duration: 1)
         let rollForever = SKAction.repeatForever(rollAction)
         roller0.run(rollForever)
+    }
+
+    func restartActions(multiplier: Double) {
+        self.driveAngleMultiplier = multiplier
+        startActions(baseDriveAngle: driveAngle)
     }
 }
