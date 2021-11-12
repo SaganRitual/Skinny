@@ -41,7 +41,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
         let driveAngle0 = ArenaScene.baseDriveAngle
 
         layerStack.layers.append(SpriteLayer(
-            parentNode: self, color: ArenaScene.skMagenta,
+            parentNode: sceneRing, color: ArenaScene.skMagenta,
             radiusFraction: 0.75, driveAngle: driveAngle0,
             runActions: true
         ))
