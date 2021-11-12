@@ -5,11 +5,12 @@ import SpriteKit
 class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
     @Published var readyToRun = false
 
-    private var ringo: SKShapeNode!
-
     let dotsPool: SpritePool
 
+    static let baseDriveAngle = Double.tau
+
     var layerStack = LayerStack()
+    var sceneRing: SKShapeNode!
     var tickCount = 0
 
     override init(size: CGSize) {
@@ -26,13 +27,27 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 
     override func didMove(to view: SKView) {
         let sceneRadius = self.frame.size.width / 2
-        self.ringo = Sprite.makeMainRing(
+        sceneRing = Sprite.makeMainRing(
             parentSKNode: self, radius: 0.95 * sceneRadius, color: .blue
         )
 
-        layerStack.addLayer(parentSKNode: ringo)
-        layerStack.addLayer(parentSKNode: layerStack[0].ringShape)
-        layerStack.addLayer(parentSKNode: layerStack[1].ringShape)
+        let driveAngle0 = ArenaScene.baseDriveAngle
+
+        layerStack.layers.append(SpriteLayer(
+            parentNode: sceneRing, color: .magenta, driveAngle: driveAngle0
+        ))
+
+        let driveAngle1 = -(1.0 / layerStack.initialRadiusFractions[0]) * driveAngle0
+
+        layerStack.layers.append(SpriteLayer(
+            parentNode: layerStack.layers[0].roller0, color: .orange, driveAngle: driveAngle1
+        ))
+
+        let driveAngle2 = -(1.0 / layerStack.initialRadiusFractions[1]) * driveAngle1
+
+        layerStack.layers.append(SpriteLayer(
+            parentNode: layerStack.layers[1].roller0, color: .green, driveAngle: driveAngle2
+        ))
 
         readyToRun = true
     }
@@ -44,7 +59,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 
 extension ArenaScene {
     func setCarousel(_ carouselHz: Double) {
-        ringo.removeAllActions()
+        sceneRing.removeAllActions()
 
         if carouselHz == 0 { return }
         let angle = sign(carouselHz) * .tau
@@ -52,7 +67,7 @@ extension ArenaScene {
         let rotate = SKAction.rotate(byAngle: angle, duration: 1 / abs(carouselHz))
         let rotateForever = SKAction.repeatForever(rotate)
 
-        ringo.run(rotateForever)
+        sceneRing.run(rotateForever)
     }
 }
 
@@ -85,6 +100,6 @@ extension ArenaScene {
 
 extension ArenaScene {
     func setViewingScale(X scaleSquared: Double) {
-        ringo?.setScale(sqrt(scaleSquared))
+        sceneRing?.setScale(sqrt(scaleSquared))
     }
 }

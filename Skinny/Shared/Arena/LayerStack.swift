@@ -10,24 +10,22 @@ class LayerStack: ObservableObject, RandomAccessCollection {
 
     subscript(position: Int) -> SpriteLayer { layers[position] }
 
-    private let colors: [SKColor] = [
+    let colors: [SKColor] = [
         .cyan, .magenta, .yellow, .red, .green
 //        .clear, .clear, .clear, .clear, .clear
     ]
 
-    private let initialRadiusFractions: [Double] = [
-        0.5, 0.5, 0.5, 0.5, 0.5
-    ]
+    let initialRadiusFractions = [0.9, 0.8]
 
     func addLayer(parentSKNode: SKNode) {
-        let color = colors[layers.count]
-        let radiusFraction = initialRadiusFractions[layers.count]
-
-        let newLayer = SpriteLayer(
-            layerIndex: layers.count, parentSKNode: parentSKNode, color: color,
-            radiusFraction: radiusFraction
-        )
-
-        layers.append(newLayer)
+//        let color = colors[layers.count]
+//        let radiusFraction = initialRadiusFractions[layers.count]
+//
+//        let newLayer = SpriteLayer(
+//            layerIndex: layers.count, parentSKNode: parentSKNode, color: color,
+//            radiusFraction: radiusFraction
+//        )
+//
+//        layers.append(newLayer)
     }
 }

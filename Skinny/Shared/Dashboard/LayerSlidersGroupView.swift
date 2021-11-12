@@ -36,10 +36,3 @@ struct LayerSlidersGroupView: View {
         }
     }
 }
-
-//struct LayerSlidersGroupView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LayerSlidersGroupView()
-//            .environmentObject(Layer(parentSKNode: <#T##SKNode#>, color: <#T##SKColor#>, radius: <#T##Double#>)
-//    }
-//}

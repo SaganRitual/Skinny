@@ -9,12 +9,13 @@ extension ArenaScene {
 
         for ix in 0..<layerStack.count {
             let easyDot = dotsPool.makeSprite()
-            easyDot.size = CGSize(width: 5, height: 5)
+            easyDot.size = CGSize(width: 2, height: 2)
             easyDot.color = color
             easyDot.alpha = 0.85
 
-            let penTip = layerStack[ix].penTip
-            let dotPosition = penTip.convert(penTip.position, to: self)
+            let xOtherEnd = layerStack[ix].pen0.frame.size.width
+            let pOtherEnd = CGPoint(x: xOtherEnd, y: 0)
+            let dotPosition = layerStack[ix].pen0.convert(pOtherEnd, to: self)
 
             easyDot.position = dotPosition
             self.addChild(easyDot)
