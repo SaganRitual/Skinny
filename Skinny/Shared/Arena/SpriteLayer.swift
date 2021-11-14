@@ -16,34 +16,44 @@ class SpriteLayer: Identifiable, ObservableObject {
     let roller: SKSpriteNode
     let spinarm: SKSpriteNode
 
+    @Published var baseRadius: Double
     @Published var penLength: Double
     @Published var spinarmLength: Double
 
     let inkHue = Double.random(in: 0..<1)
 
-    init(layerIndex: Int, _ pen: SKSpriteNode, _ roller: SKSpriteNode, _ spinarm: SKSpriteNode) {
+    init(
+        layerIndex: Int, baseRadius: Double,
+        _ pen: SKSpriteNode, _ roller: SKSpriteNode, _ spinarm: SKSpriteNode
+    ) {
         self.layerIndex = layerIndex
+        self.baseRadius = baseRadius
         self.pen = pen
         self.roller = roller
         self.spinarm = spinarm
 
-        UserDefaults.standard.set(penFraction, forKey: "penLength\(layerIndex)")
-        UserDefaults.standard.set(spinarmFraction, forKey: "armLength\(layerIndex)")
-
         penLength = UserDefaults.standard.double(forKey: "penLength\(layerIndex)")
         spinarmLength = UserDefaults.standard.double(forKey: "armLength\(layerIndex)")
 
-        pen.size.width = penLength * roller.size.width / 2
-        spinarm.size.width = spinarmLength * roller.size.width / 2
+        pen.size.width = penLength * roller.size.width
+        spinarm.size.width = spinarmLength * baseRadius
     }
 
     func setPenLength(fractionOfParentRadius: Double) {
-        penLength = fractionOfParentRadius * roller.size.width / 2
+        print("resize pen from \(penLength) to \(fractionOfParentRadius)")
+        penLength = fractionOfParentRadius
         UserDefaults.standard.set(penLength, forKey: "penLength\(layerIndex)")
+
+        let resize = SKAction.resize(toWidth: penLength * roller.size.width, duration: 1)
+        pen.run(resize)
     }
 
     func setSpinarmLength(fractionOfParentRadius: Double) {
-        spinarmLength = fractionOfParentRadius * roller.size.width / 2
+        spinarmLength = fractionOfParentRadius
+        print("spinarmLength \(spinarmLength)")
         UserDefaults.standard.set(spinarmLength, forKey: "armLength\(layerIndex)")
+
+        let resize = SKAction.resize(toWidth: spinarmLength * baseRadius, duration: 1)
+        spinarm.run(resize)
     }
 }

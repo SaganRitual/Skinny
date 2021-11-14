@@ -21,7 +21,8 @@ struct LayerSlidersGroupView: View {
             .help("Length of the pen relative to the spin arm")
             .onChange(of: spriteLayer.penLength) {
                 print("update pen \($0)")
-                spriteLayer.setPenLength(fractionOfParentRadius: $0) }
+                spriteLayer.setPenLength(fractionOfParentRadius: $0)
+            }
 
             SliderView(
                 label: "Spin arm", labellet: "Xp", range: 0...0.95, step: 0.025,

@@ -14,11 +14,16 @@ class SpriteLayerFactory {
     }
 
     func makeLayer(layerIndex: Int, parentNode: SKNode, color: SKColor) -> SpriteLayer {
+        let pn = layerIndex == 0 ?
+            (parentNode as? ArenaScene)! : (parentNode as? SKSpriteNode)!
+
         let spinarm = makeSpinarm(parentNode: parentNode, color: color)
         let roller = makeRoller(spinarm: spinarm)
         let pen = makePen(rollerSprite: roller)
 
-        return SpriteLayer(layerIndex: layerIndex, pen, roller, spinarm)
+        return SpriteLayer(
+            layerIndex: layerIndex, baseRadius: pn.frame.size.width / 2, pen, roller, spinarm
+        )
     }
 }
 
@@ -43,7 +48,9 @@ extension SpriteLayerFactory {
         penSprite.anchorPoint = CGPoint(x: 0, y: 0.5)
 
         penSprite.color = rollerSprite.color
-        penSprite.size = rollerSprite.size
+        penSprite.size = CGSize(
+            width: penFraction * rollerSprite.size.width / 2, height: lineHeight
+        )
 
         rollerSprite.addChild(penSprite)
 

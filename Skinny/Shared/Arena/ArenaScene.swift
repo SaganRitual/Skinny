@@ -68,7 +68,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
             easyDot.color = color
             easyDot.alpha = 0.85
 
-            let tipPosition = CGPoint(x: layer.penLength, y: 0)
+            let tipPosition = CGPoint(x: layer.penLength * layer.roller.size.width, y: 0)
             let dotPosition = layer.pen.convert(tipPosition, to: self)
 
             easyDot.position = dotPosition
