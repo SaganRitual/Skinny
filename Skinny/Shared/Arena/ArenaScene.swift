@@ -9,6 +9,9 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 
     lazy var layerFactory = SpriteLayerFactory(arenaScene: self)
 
+    var driveRateShadow = 0.0
+    var runSpeedShadow = 0.0
+
     override init(size: CGSize) {
         super.init(size: size)
 
@@ -30,11 +33,11 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 
         self.addChild(sceneRing)
 
-        let magenta = NSColor.magenta.withAlphaComponent(0.1)
+        let magenta = NSColor.magenta.withAlphaComponent(0.8)
         let orange = NSColor.orange.withAlphaComponent(0.1)
 
-        layers.append(layerFactory.makeLayer(parentNode: self, color: magenta))
-        layers.append(layerFactory.makeLayer(parentNode: layers[0].roller, color: orange))
+        layers.append(layerFactory.makeLayer(layerIndex: 0, parentNode: self, color: magenta))
+//        layers.append(layerFactory.makeLayer(layerIndex: 1, parentNode: layers[0].roller, color: orange))
     }
 
     static let rotationPeriodSeconds: TimeInterval = 10
@@ -53,9 +56,9 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
             layer.roller.size.height = layer.roller.size.width
 
             let fractionToSceneRadius = frame.size.width / layer.roller.size.width
-            let rollAngle = fractionToSceneRadius * Double.tau / (60 * ArenaScene.rotationPeriodSeconds)
+            let rollAngle = fractionToSceneRadius * Double.tau / (60 / self.runSpeedShadow / self.driveRateShadow)
 
-            let spinAngle = Double.tau / (60 * ArenaScene.rotationPeriodSeconds)
+            let spinAngle = Double.tau / (60 / self.runSpeedShadow / self.driveRateShadow)
 
             layer.spinarm.zRotation += spinAngle
             layer.roller.zRotation -= spinAngle + rollAngle
@@ -81,9 +84,6 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 }
 
 extension ArenaScene {
-    func setDriveRate(_ driveHz: Double) {
-//        layerStack.layers[0].restartActions(multiplier: driveHz)
-    }
 }
 
 extension ArenaScene {
@@ -101,6 +101,8 @@ extension ArenaScene {
 
 extension ArenaScene {
     func setCarousel(_ carouselHz: Double) {
+        UserDefaults.standard.set(carouselHz, forKey: "carouselHz")
+        
 //        sceneRing.removeAllActions()
 //
 //        if carouselHz == 0 { return }

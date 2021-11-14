@@ -13,12 +13,12 @@ class SpriteLayerFactory {
         self.arenaScene = arenaScene
     }
 
-    func makeLayer(parentNode: SKNode, color: SKColor) -> SpriteLayer {
+    func makeLayer(layerIndex: Int, parentNode: SKNode, color: SKColor) -> SpriteLayer {
         let spinarm = makeSpinarm(parentNode: parentNode, color: color)
         let roller = makeRoller(spinarm: spinarm)
         let pen = makePen(rollerSprite: roller)
 
-        return SpriteLayer(pen, roller, spinarm)
+        return SpriteLayer(layerIndex: layerIndex, pen, roller, spinarm)
     }
 }
 
@@ -64,15 +64,15 @@ extension SpriteLayerFactory {
 
         parentNode.addChild(spinnerSprite)
 
-        // Stress test
-        let throbPlus = SKAction.resize(toWidth: maxSpinarmFraction * arenaScene.frame.size.width / 2, duration: sqrt(2))
-        throbPlus.timingMode = .easeInEaseOut
-        let throbMinus = SKAction.resize(toWidth: minSpinarmFraction * arenaScene.frame.size.width / 2, duration: sqrt(3))
-        throbMinus.timingMode = .easeInEaseOut
-        let throb = SKAction.sequence([throbPlus, throbMinus])
-        let throbForever = SKAction.repeatForever(throb)
-
-        spinnerSprite.run(throbForever)
+//        // To make it visually interesting while I debug
+//        let throbPlus = SKAction.resize(toWidth: maxSpinarmFraction * arenaScene.frame.size.width / 2, duration: sqrt(2))
+//        throbPlus.timingMode = .easeInEaseOut
+//        let throbMinus = SKAction.resize(toWidth: minSpinarmFraction * arenaScene.frame.size.width / 2, duration: sqrt(3))
+//        throbMinus.timingMode = .easeInEaseOut
+//        let throb = SKAction.sequence([throbPlus, throbMinus])
+//        let throbForever = SKAction.repeatForever(throb)
+//
+//        spinnerSprite.run(throbForever)
 
         return spinnerSprite
     }

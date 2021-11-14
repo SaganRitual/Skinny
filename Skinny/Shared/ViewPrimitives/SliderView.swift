@@ -24,8 +24,8 @@ struct SliderView: View {
                 value: $value,
                 in: range,
                 step: step,
-                minimumValueLabel: Text("\(range.lowerBound.asString(decimals: 0))"),
-                maximumValueLabel: Text("\(range.upperBound.asString(decimals: 0))"),
+                minimumValueLabel: Text("\(range.lowerBound.asString(decimals: 1))"),
+                maximumValueLabel: Text("\(range.upperBound.asString(decimals: 1))"),
                 label: { }
             )
             .padding([.leading, .trailing], 10)

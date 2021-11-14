@@ -1,16 +1,20 @@
 // We are a way for the cosmos to know itself. -- C. Sagan
 
+import SpriteKit
 import SwiftUI
 
 struct AppSettingsView: View {
     @EnvironmentObject var arenaScene: ArenaScene
 
-    @State var carouselHz = 0.0
-    @State var driveRateHz = 1.0
-    @State var runSpeed = 0.1
-    @State var zoomLevel = 1.0
+    @State var carouselHz = UserDefaults.standard.double(forKey: "carouselHz")
+    @State var driveRateHz = UserDefaults.standard.double(forKey: "driveRateHz")
+    @State var runSpeed = UserDefaults.standard.double(forKey: "runSpeed")
+    @State var zoomLevel = UserDefaults.standard.double(forKey: "zoomLevel")
 
     static let pathFadeDurationSeconds = CGFloat(15)
+
+    static let driveRateRange = -1.5...1.5
+    static let simSpeedRange = 0.0...2.0
 
     var body: some View {
         VStack {
@@ -28,31 +32,48 @@ struct AppSettingsView: View {
             .onChange(of: carouselHz) { arenaScene.setCarousel($0) }
 
             SliderView(
-                label: "Drive rate", labellet: "Hz", range: -1.5...1.5, step: 0.1,
+                label: "Drive rate", labellet: "Hz",
+                range: AppSettingsView.driveRateRange, step: 0.1,
                 value: $driveRateHz
             )
+            .help("Orbit rate of the first inner ring; drives all the movement")
             .padding(.trailing, 10)
             .controlSize(.small)
             .monospacedDigit()
             .allowsTightening(false)
             .minimumScaleFactor(1)
             .lineLimit(1)
-            .help("Orbit rate of the first inner ring; drives all the movement")
-            .onChange(of: driveRateHz) { arenaScene.setDriveRate($0) }
+            .onAppear(perform: {
+                let hi = min(AppSettingsView.driveRateRange.upperBound, self.driveRateHz)
+                let adjusted = max(AppSettingsView.driveRateRange.lowerBound, hi)
+                self.driveRateHz = adjusted
+
+                UserDefaults.standard.set(self.driveRateHz, forKey: "driveRateHz")
+
+                self.arenaScene.driveRateShadow = self.driveRateHz
+            })
+            .onChange(of: driveRateHz) { newRate in self.setDriveRate(newRate) }
 
             SliderView(
                 label: "Speed", labellet: "X", range: 0...2, step: 0.05,
                 value: $runSpeed
             )
+            .help("Ratio of run time to wall time")
             .padding(.trailing, 10)
             .controlSize(.small)
             .monospacedDigit()
             .allowsTightening(false)
             .minimumScaleFactor(1)
             .lineLimit(1)
-            .help("Ratio of run time to wall time")
-            .onAppear { arenaScene.setRunSpeed(X: runSpeed) }
-            .onChange(of: runSpeed) { arenaScene.setRunSpeed(X: $0) }
+            .onAppear(perform: {
+                let hi = min(AppSettingsView.simSpeedRange.upperBound, self.runSpeed)
+                let adjusted = max(AppSettingsView.simSpeedRange.lowerBound, hi)
+                self.runSpeed = adjusted
+
+                UserDefaults.standard.set(adjusted, forKey: "runSpeed")
+                self.setRunSpeed(adjusted)
+            })
+            .onChange(of: runSpeed) { self.setRunSpeed($0) }
 
             SliderView(label: "Zoom", labellet: "X", range: 0...3,
                        step: 0.1, value: $zoomLevel
@@ -67,5 +88,32 @@ struct AppSettingsView: View {
             .onAppear { arenaScene.setViewingScale(X: zoomLevel) }
             .onChange(of: zoomLevel) { arenaScene.setViewingScale(X: $0) }
         }
+    }
+}
+
+extension AppSettingsView {
+    func setDriveRate(_ driveRateHz: Double) {
+        UserDefaults.standard.set(driveRateHz, forKey: "driveRateHz")
+
+        let current = arenaScene.driveRateShadow
+        let new = driveRateHz
+        let delta = new - current
+
+        if delta == 0 { return }
+
+        let changeAction = SKAction.customAction(withDuration: 1) { _, completionFraction in
+            arenaScene.driveRateShadow = current + completionFraction * delta
+        }
+
+        arenaScene.removeAllActions()
+        arenaScene.run(changeAction) {
+            self.arenaScene.driveRateShadow = self.driveRateHz
+        }
+    }
+
+    func setRunSpeed(_ runSpeed: Double) {
+        UserDefaults.standard.set(runSpeed, forKey: "runSpeed")
+        self.arenaScene.speed = runSpeed
+        self.arenaScene.runSpeedShadow = runSpeed
     }
 }
