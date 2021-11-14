@@ -18,12 +18,12 @@ struct LayerSlidersGroupView: View {
             .allowsTightening(false)
             .minimumScaleFactor(1)
             .lineLimit(1)
-            .help("Length of the pen as a fraction of the ring radius")
+            .help("Length of the pen relative to the spin arm")
             .onChange(of: spriteLayer.penLength) { _ in /*spriteLayer.setPenLength($0)*/ }
 
             SliderView(
-                label: "Radius", labellet: "Xp", range: 0...1, step: 0.025,
-                value: $spriteLayer.radiusFraction
+                label: "Spin arm", labellet: "Xp", range: 0...1, step: 0.025,
+                value: $spriteLayer.spinarmLength
             )
             .padding(.trailing, 10)
             .controlSize(.small)
@@ -32,7 +32,7 @@ struct LayerSlidersGroupView: View {
             .minimumScaleFactor(1)
             .lineLimit(1)
             .help("Length of the radius as a fraction of the parent ring radius")
-            .onChange(of: spriteLayer.radiusFraction) { _ in /*spriteLayer.setRadiusFraction($0)*/ }
+            .onChange(of: spriteLayer.spinarmLength) { _ in /*spriteLayer.setRadiusFraction($0)*/ }
         }
     }
 }

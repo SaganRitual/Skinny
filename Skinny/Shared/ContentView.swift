@@ -18,7 +18,7 @@ struct ContentView: View {
             HStack {
                 VStack {
                     AppSettingsView()
-                    if !$arenaScene.layerStack.layers.isEmpty {
+                    if !$arenaScene.layers.isEmpty {
                         LayerSettingsListView()
                     }
                 }

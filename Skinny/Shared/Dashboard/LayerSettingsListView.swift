@@ -6,7 +6,7 @@ struct LayerSettingsListView: View {
     @EnvironmentObject var arenaScene: ArenaScene
 
     var body: some View {
-        List(arenaScene.layerStack, id: \.id) { layerSettings in
+        List(arenaScene.layers, id: \.id) { layerSettings in
             LayerSettingsView().environmentObject(layerSettings)
         }
     }

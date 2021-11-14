@@ -6,7 +6,7 @@ struct LayerSettingsView: View {
     var body: some View {
         VStack {
             LayerSlidersGroupView()
-            LayerToggleGroupView()
+//            LayerToggleGroupView()
         }
     }
 }

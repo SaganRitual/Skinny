@@ -1,106 +1,114 @@
 // We are a way for the cosmos to know itself. -- C. Sagan
 
 import SpriteKit
+import SwiftUI
 
 class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
-    @Published var readyToRun = false
-
-    let dotsPool: SpritePool
-
-    static let baseDriveAngle = Double.tau
-
-    var layerStack = LayerStack()
-    var sceneRing: SKShapeNode!
+    @Published var layers = [SpriteLayer]()
     var tickCount = 0
 
-    override init(size: CGSize) {
-        self.dotsPool = SpritePool("Markers", "circle-solid", cPreallocate: 10000)
+    lazy var layerFactory = SpriteLayerFactory(arenaScene: self)
 
+    override init(size: CGSize) {
         super.init(size: size)
 
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        backgroundColor = SKColor.init(calibratedWhite: 0.1, alpha: 0.1)
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        speed = 1
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    static let skCyan =    SKColor(calibratedRed: 0, green: 1, blue: 1, alpha: 0.01)
-    static let skMagenta = SKColor(calibratedRed: 1, green: 0, blue: 1, alpha: 0.01)
-    static let skOrange =  SKColor(calibratedRed: 1, green: 165.0/255.0, blue: 0, alpha: 0.01)
-    static let skGreen =   SKColor(calibratedRed: 0, green: 1, blue: 0, alpha: 0.01)
-
     override func didMove(to view: SKView) {
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        let sceneRing = layerFactory.ringsPool.makeSprite()
+        sceneRing.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        sceneRing = SKShapeNode(circleOfRadius: ContentView.sceneRadius)
-        sceneRing.strokeColor = ArenaScene.skCyan
+        sceneRing.color = .cyan
+        sceneRing.size = self.frame.size
 
         self.addChild(sceneRing)
 
-        let driveAngle0 = ArenaScene.baseDriveAngle
+        let magenta = NSColor.magenta.withAlphaComponent(0.1)
+        let orange = NSColor.orange.withAlphaComponent(0.1)
 
-        layerStack.layers.append(SpriteLayer(
-            parentNode: sceneRing, color: ArenaScene.skMagenta,
-            radiusFraction: 0.75, driveAngle: driveAngle0,
-            runActions: true
-        ))
-
-        let driveAngle1 = -(1.0 / layerStack.initialRadiusFractions[0]) * driveAngle0
-        let radiusFraction1 = layerStack.initialRadiusFractions[0]
-
-        layerStack.layers.append(SpriteLayer(
-            parentNode: layerStack.layers[0].roller0, color: ArenaScene.skOrange,
-            radiusFraction: radiusFraction1, driveAngle: driveAngle1,
-            runActions: true
-        ))
-
-        let driveAngle2 = -(1.0 / layerStack.initialRadiusFractions[1]) * driveAngle1
-        let radiusFraction2 = layerStack.initialRadiusFractions[1]
-
-        layerStack.layers.append(SpriteLayer(
-            parentNode: layerStack.layers[1].roller0, color: ArenaScene.skGreen,
-            radiusFraction: radiusFraction2, driveAngle: driveAngle2,
-            runActions: true
-        ))
-
-        readyToRun = true
+        layers.append(layerFactory.makeLayer(parentNode: self, color: magenta))
+        layers.append(layerFactory.makeLayer(parentNode: layers[0].roller, color: orange))
     }
+
+    static let rotationPeriodSeconds: TimeInterval = 10
 
     override func update(_ currentTime: TimeInterval) {
         tickCount += 1
-    }
-}
 
-extension ArenaScene {
-    func setCarousel(_ carouselHz: Double) {
-        sceneRing.removeAllActions()
+        let hue = Double(tickCount % 600) / 600
 
-        if carouselHz == 0 { return }
-        let angle = sign(carouselHz) * .tau
+        for layer in layers {
+            let adjustedHue = (layer.inkHue + hue).truncatingRemainder(dividingBy: 1)
+            let color = NSColor(hue: adjustedHue, saturation: 1, brightness: 1, alpha: 1)
 
-        let rotate = SKAction.rotate(byAngle: angle, duration: 1 / abs(carouselHz))
-        let rotateForever = SKAction.repeatForever(rotate)
+            layer.roller.position = CGPoint(x: layer.spinarm.size.width, y: 0)
+            layer.roller.size.width = 2 * ((frame.size.width / 2) - layer.spinarm.size.width)
+            layer.roller.size.height = layer.roller.size.width
 
-        sceneRing.run(rotateForever)
+            let fractionToSceneRadius = frame.size.width / layer.roller.size.width
+            let rollAngle = fractionToSceneRadius * Double.tau / (60 * ArenaScene.rotationPeriodSeconds)
+
+            let spinAngle = Double.tau / (60 * ArenaScene.rotationPeriodSeconds)
+
+            layer.spinarm.zRotation += spinAngle
+            layer.roller.zRotation -= spinAngle + rollAngle
+
+            let easyDot = layerFactory.dotsPool.makeSprite()
+            easyDot.size = CGSize(width: 5, height: 5)
+            easyDot.color = color
+            easyDot.alpha = 0.85
+
+            let tipPosition = CGPoint(x: layer.penLength, y: 0)
+            let dotPosition = layer.pen.convert(tipPosition, to: self)
+
+            easyDot.position = dotPosition
+            self.addChild(easyDot)
+
+            let pathFadeDurationSeconds: TimeInterval = 2
+            let fade = SKAction.fadeOut(withDuration: pathFadeDurationSeconds)
+            easyDot.run(fade) {
+                self.layerFactory.dotsPool.releaseSprite(easyDot)
+            }
+        }
     }
 }
 
 extension ArenaScene {
     func setDriveRate(_ driveHz: Double) {
-        layerStack.layers[0].restartActions(multiplier: driveHz)
+//        layerStack.layers[0].restartActions(multiplier: driveHz)
     }
 }
 
 extension ArenaScene {
     func setRunSpeed(X: Double) {
-        precondition(X >= 0, "Negative speed not yet supported")
-        self.speed = X
+//        precondition(X >= 0, "Negative speed not yet supported")
+//        self.speed = X
     }
 }
 
 extension ArenaScene {
     func setViewingScale(X scaleSquared: Double) {
-        sceneRing?.setScale(sqrt(scaleSquared))
+//        sceneRing?.setScale(sqrt(scaleSquared))
+    }
+}
+
+extension ArenaScene {
+    func setCarousel(_ carouselHz: Double) {
+//        sceneRing.removeAllActions()
+//
+//        if carouselHz == 0 { return }
+//        let angle = sign(carouselHz) * .tau
+//
+//        let rotate = SKAction.rotate(byAngle: angle, duration: 1 / abs(carouselHz))
+//        let rotateForever = SKAction.repeatForever(rotate)
+//
+//        sceneRing.run(rotateForever)
     }
 }
