@@ -22,12 +22,7 @@ struct AppSettingsView: View {
                 label: "Carousel", labellet: "Hz", range: -1.5...1.5, step: 0.1,
                 value: $carouselHz
             )
-            .padding(.trailing, 10)
-            .controlSize(.small)
-            .monospacedDigit()
-            .allowsTightening(false)
-            .minimumScaleFactor(1)
-            .lineLimit(1)
+            .modifier(SliderViewDefaults())
             .help("Spin rate of the base ring backward/forward; changes shape of the plot")
             .onChange(of: carouselHz) { arenaScene.setCarousel($0) }
 
@@ -36,13 +31,8 @@ struct AppSettingsView: View {
                 range: AppSettingsView.driveRateRange, step: 0.1,
                 value: $driveRateHz
             )
+            .modifier(SliderViewDefaults())
             .help("Orbit rate of the first inner ring; drives all the movement")
-            .padding(.trailing, 10)
-            .controlSize(.small)
-            .monospacedDigit()
-            .allowsTightening(false)
-            .minimumScaleFactor(1)
-            .lineLimit(1)
             .onAppear(perform: {
                 let hi = min(AppSettingsView.driveRateRange.upperBound, self.driveRateHz)
                 let adjusted = max(AppSettingsView.driveRateRange.lowerBound, hi)
@@ -58,13 +48,8 @@ struct AppSettingsView: View {
                 label: "Speed", labellet: "X", range: 0...2, step: 0.05,
                 value: $runSpeed
             )
+            .modifier(SliderViewDefaults())
             .help("Ratio of run time to wall time")
-            .padding(.trailing, 10)
-            .controlSize(.small)
-            .monospacedDigit()
-            .allowsTightening(false)
-            .minimumScaleFactor(1)
-            .lineLimit(1)
             .onAppear(perform: {
                 let hi = min(AppSettingsView.simSpeedRange.upperBound, self.runSpeed)
                 let adjusted = max(AppSettingsView.simSpeedRange.lowerBound, hi)
@@ -78,12 +63,7 @@ struct AppSettingsView: View {
             SliderView(label: "Zoom", labellet: "X", range: 0...3,
                        step: 0.1, value: $zoomLevel
             )
-            .padding(.trailing, 10)
-            .controlSize(.small)
-            .monospacedDigit()
-            .allowsTightening(false)
-            .minimumScaleFactor(1)
-            .lineLimit(1)
+            .modifier(SliderViewDefaults())
             .help("Zoom, like it says on the tin")
             .onAppear { arenaScene.setViewingScale(X: zoomLevel) }
             .onChange(of: zoomLevel) { arenaScene.setViewingScale(X: $0) }

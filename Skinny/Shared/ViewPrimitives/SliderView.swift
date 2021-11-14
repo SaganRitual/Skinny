@@ -2,6 +2,18 @@
 
 import SwiftUI
 
+struct SliderViewDefaults: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(.trailing, 10)
+            .controlSize(.small)
+            .monospacedDigit()
+            .allowsTightening(false)
+            .minimumScaleFactor(1)
+            .lineLimit(1)
+    }
+}
+
 struct SliderView: View {
     let label: String
     let labellet: String
@@ -12,6 +24,16 @@ struct SliderView: View {
 
     var body: some View {
         VStack {
+            Slider(
+                value: $value,
+                in: range,
+                step: step,
+                minimumValueLabel: Text("\(range.lowerBound.asString(decimals: 2))"),
+                maximumValueLabel: Text("\(range.upperBound.asString(decimals: 2))"),
+                label: { }
+            )
+            .padding([.leading, .trailing], 10)
+
             HStack {
                 Text(label)
                     .frame(alignment: .leading)
@@ -19,17 +41,10 @@ struct SliderView: View {
                 Text("\(value.asString(decimals: 2))\(labellet)")
                     .frame(alignment: .trailing)
             }
-
-            Slider(
-                value: $value,
-                in: range,
-                step: step,
-                minimumValueLabel: Text("\(range.lowerBound.asString(decimals: 1))"),
-                maximumValueLabel: Text("\(range.upperBound.asString(decimals: 1))"),
-                label: { }
-            )
-            .padding([.leading, .trailing], 10)
         }
+        .padding(.bottom, 10)
+        .border(SeparatorShapeStyle(), width: 5)
+        .padding(.bottom, -8)
     }
 }
 

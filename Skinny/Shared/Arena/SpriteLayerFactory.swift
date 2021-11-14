@@ -14,28 +14,25 @@ class SpriteLayerFactory {
     }
 
     func makeLayer(layerIndex: Int, parentNode: SKNode, color: SKColor) -> SpriteLayer {
-        let pn = layerIndex == 0 ?
-            (parentNode as? ArenaScene)! : (parentNode as? SKSpriteNode)!
-
         let spinarm = makeSpinarm(parentNode: parentNode, color: color)
         let roller = makeRoller(spinarm: spinarm)
         let pen = makePen(rollerSprite: roller)
 
         return SpriteLayer(
-            layerIndex: layerIndex, baseRadius: pn.frame.size.width / 2, pen, roller, spinarm
+            layerIndex: layerIndex, parentNode: parentNode, pen, roller, spinarm
         )
     }
 }
 
 extension SpriteLayerFactory {
     func makeRoller(spinarm: SKSpriteNode) -> SKSpriteNode {
-        let size = CGSize(width: spinarm.size.width, height: spinarm.size.width)
+        let frameSize = CGSize(width: spinarm.frame.size.width, height: lineHeight)
 
         let rollerSprite = ringsPool.makeSprite()
 
-        rollerSprite.color = spinarm.color
-        rollerSprite.size = CGSize(width: size.width, height: lineHeight)
-        rollerSprite.position = CGPoint(x: -spinarm.frame.size.width, y: 0)
+        rollerSprite.color = .red//spinarm.color
+        rollerSprite.size = frameSize
+        rollerSprite.position = CGPoint(x: -frameSize.width, y: 0)
 
         spinarm.addChild(rollerSprite)
 
@@ -46,12 +43,9 @@ extension SpriteLayerFactory {
         let penSprite = linesPool.makeSprite()
 
         penSprite.anchorPoint = CGPoint(x: 0, y: 0.5)
+        penSprite.color = .green//rollerSprite.color
 
-        penSprite.color = rollerSprite.color
-        penSprite.size = CGSize(
-            width: penFraction * rollerSprite.size.width / 2, height: lineHeight
-        )
-
+        penSprite.size.height = 1
         rollerSprite.addChild(penSprite)
 
         return rollerSprite
@@ -60,16 +54,12 @@ extension SpriteLayerFactory {
     func makeSpinarm(
         parentNode: SKNode, color: SKColor
     ) -> SKSpriteNode {
-        let parentRollerRadius = parentNode.frame.size.width / 2
-        let size = CGSize(width: maxSpinarmFraction * parentRollerRadius, height: lineHeight)
+        let spinarmSprite = linesPool.makeSprite()
 
-        let spinnerSprite = linesPool.makeSprite()
-        spinnerSprite.anchorPoint = CGPoint(x: 0, y: 0.5)
+        spinarmSprite.anchorPoint = CGPoint(x: 0, y: 0.5)
+        spinarmSprite.color = .blue//color
 
-        spinnerSprite.color = color
-        spinnerSprite.size = size
-
-        parentNode.addChild(spinnerSprite)
+        parentNode.addChild(spinarmSprite)
 
 //        // To make it visually interesting while I debug
 //        let throbPlus = SKAction.resize(toWidth: maxSpinarmFraction * arenaScene.frame.size.width / 2, duration: sqrt(2))
@@ -81,7 +71,7 @@ extension SpriteLayerFactory {
 //
 //        spinnerSprite.run(throbForever)
 
-        return spinnerSprite
+        return spinarmSprite
     }
 }
 

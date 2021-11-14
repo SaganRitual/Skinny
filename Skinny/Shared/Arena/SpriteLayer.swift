@@ -5,55 +5,55 @@ import SpriteKit
 let lineHeight = 1.0   // Thin looks good, thick is easier to debug
 let maxSpinarmFraction = 0.6
 let minSpinarmFraction = 0.1
-let penFraction = 0.42
-let spinarmFraction = 0.95
 
 class SpriteLayer: Identifiable, ObservableObject {
     let id = UUID()
     let layerIndex: Int
 
+    let parentNode: SKNode
     let pen: SKSpriteNode
     let roller: SKSpriteNode
     let spinarm: SKSpriteNode
 
-    @Published var baseRadius: Double
-    @Published var penLength: Double
-    @Published var spinarmLength: Double
+    @Published var penLengthFraction: Double
+    @Published var spinarmFraction: Double
 
     let inkHue = Double.random(in: 0..<1)
 
+    var baseRadius: CGFloat { parentNode.frame.size.width / 2 }
+    var myRadius: CGFloat { roller.frame.size.width / 2 }
+
+    var penLength: CGFloat { penLengthFraction * myRadius }
+    var spinarmLength: CGFloat { spinarmFraction * baseRadius }
+
     init(
-        layerIndex: Int, baseRadius: Double,
+        layerIndex: Int, parentNode: SKNode,
         _ pen: SKSpriteNode, _ roller: SKSpriteNode, _ spinarm: SKSpriteNode
     ) {
         self.layerIndex = layerIndex
-        self.baseRadius = baseRadius
+        self.parentNode = parentNode
         self.pen = pen
         self.roller = roller
         self.spinarm = spinarm
 
-        penLength = UserDefaults.standard.double(forKey: "penLength\(layerIndex)")
-        spinarmLength = UserDefaults.standard.double(forKey: "armLength\(layerIndex)")
+        penLengthFraction = UserDefaults.standard.double(forKey: "penLengthFraction\(layerIndex)")
+        spinarmFraction = UserDefaults.standard.double(forKey: "spinarmFraction\(layerIndex)")
 
-        pen.size.width = penLength * roller.size.width
-        spinarm.size.width = spinarmLength * baseRadius
+        pen.size = CGSize(width: penLength, height: lineHeight)
+        spinarm.size = CGSize(width: spinarmLength, height: lineHeight)
     }
 
-    func setPenLength(fractionOfParentRadius: Double) {
-        print("resize pen from \(penLength) to \(fractionOfParentRadius)")
-        penLength = fractionOfParentRadius
-        UserDefaults.standard.set(penLength, forKey: "penLength\(layerIndex)")
+    func penLengthFractionChanged(_ fraction: Double) {
+        UserDefaults.standard.set(fraction, forKey: "penLengthFraction\(layerIndex)")
 
-        let resize = SKAction.resize(toWidth: penLength * roller.size.width, duration: 1)
+        let resize = SKAction.resize(toWidth: self.penLength, duration: 1)
         pen.run(resize)
     }
 
-    func setSpinarmLength(fractionOfParentRadius: Double) {
-        spinarmLength = fractionOfParentRadius
-        print("spinarmLength \(spinarmLength)")
-        UserDefaults.standard.set(spinarmLength, forKey: "armLength\(layerIndex)")
+    func spinarmLengthFractionChanged(_ fraction: Double) {
+        UserDefaults.standard.set(spinarmFraction, forKey: "spinarmFraction\(layerIndex)")
 
-        let resize = SKAction.resize(toWidth: spinarmLength * baseRadius, duration: 1)
+        let resize = SKAction.resize(toWidth: self.spinarmLength, duration: 1)
         spinarm.run(resize)
     }
 }

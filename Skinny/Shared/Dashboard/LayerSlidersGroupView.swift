@@ -9,36 +9,25 @@ struct LayerSlidersGroupView: View {
     var body: some View {
         VStack {
             SliderView(
-                label: "Pen", labellet: "Xr", range: 0...1, step: 0.025,
-                value: $spriteLayer.penLength
+                label: "Spin arm", labellet: "Xp",
+                range: 0.05...0.95, step: 0.025,
+                value: $spriteLayer.spinarmFraction
             )
-            .padding(.trailing, 10)
-            .controlSize(.small)
-            .monospacedDigit()
-            .allowsTightening(false)
-            .minimumScaleFactor(1)
-            .lineLimit(1)
-            .help("Length of the pen relative to the spin arm")
-            .onChange(of: spriteLayer.penLength) {
-                print("update pen \($0)")
-                spriteLayer.setPenLength(fractionOfParentRadius: $0)
+            .modifier(SliderViewDefaults())
+            .help("Length of the radius as a fraction of the parent ring radius")
+            .onChange(of: spriteLayer.spinarmFraction) {
+                spriteLayer.spinarmLengthFractionChanged($0)
             }
 
             SliderView(
-                label: "Spin arm", labellet: "Xp", range: 0...0.95, step: 0.025,
-                value: $spriteLayer.spinarmLength
+                label: "Pen", labellet: "Xr", range: 0.05...0.95, step: 0.025,
+                value: $spriteLayer.penLengthFraction
             )
-            .padding(.trailing, 10)
-            .controlSize(.small)
-            .monospacedDigit()
-            .allowsTightening(false)
-            .minimumScaleFactor(1)
-            .lineLimit(1)
-            .help("Length of the radius as a fraction of the parent ring radius")
-            .onAppear(perform: { print("arm appear \(spriteLayer.spinarmLength)") } )
-            .onChange(of: spriteLayer.spinarmLength) {
-                print("update arm \($0)")
-                spriteLayer.setSpinarmLength(fractionOfParentRadius: $0) }
+            .modifier(SliderViewDefaults())
+            .help("Length of the pen relative to the spin arm")
+            .onChange(of: spriteLayer.penLengthFraction) {
+                spriteLayer.penLengthFractionChanged($0)
+            }
         }
     }
 }
