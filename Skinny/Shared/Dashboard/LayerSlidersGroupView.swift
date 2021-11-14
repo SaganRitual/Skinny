@@ -10,7 +10,7 @@ struct LayerSlidersGroupView: View {
         VStack {
             SliderView(
                 label: "Spin arm", labellet: "Xp",
-                range: 0.05...0.95, step: 0.025,
+                range: 0.05...0.95, step: 0.1,
                 value: $spriteLayer.spinarmFraction
             )
             .modifier(SliderViewDefaults())
@@ -20,7 +20,7 @@ struct LayerSlidersGroupView: View {
             }
 
             SliderView(
-                label: "Pen", labellet: "Xr", range: 0.05...0.95, step: 0.025,
+                label: "Pen", labellet: "Xr", range: 0.05...0.95, step: 0.1,
                 value: $spriteLayer.penLengthFraction
             )
             .modifier(SliderViewDefaults())

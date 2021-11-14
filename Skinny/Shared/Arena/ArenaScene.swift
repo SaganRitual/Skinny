@@ -33,8 +33,8 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
 
         self.addChild(sceneRing)
 
-        let magenta = NSColor.magenta.withAlphaComponent(0.8)
-        let orange = NSColor.orange.withAlphaComponent(0.1)
+        let magenta = NSColor.magenta.withAlphaComponent(0.6)
+        let orange = NSColor.orange.withAlphaComponent(0.3)
 
         layers.append(layerFactory.makeLayer(layerIndex: 0, parentNode: self, color: magenta))
 //        layers.append(layerFactory.makeLayer(layerIndex: 1, parentNode: layers[0].roller, color: orange))
@@ -43,6 +43,8 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
     static let rotationPeriodSeconds: TimeInterval = 10
 
     override func update(_ currentTime: TimeInterval) {
+        view!.showsNodeCount = true
+
         tickCount += 1
 
         let hue = Double(tickCount % 600) / 600
@@ -54,6 +56,11 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
             layer.roller.position = CGPoint(x: layer.spinarm.size.width, y: 0)
             layer.roller.size.width = 2 * ((frame.size.width / 2) - layer.spinarm.size.width)
             layer.roller.size.height = layer.roller.size.width
+
+            // Kind of ugly visually: cap the length of the pen at the same
+            // as the layer's radius. Until I can think of a sensible way to
+            // make the pieces related to each other
+            layer.pen.size.width = min(layer.pen.size.width, layer.myRadius)
 
             let fractionToSceneRadius = frame.size.width / layer.roller.size.width
             let rollAngle = fractionToSceneRadius * Double.tau / (60 / self.runSpeedShadow / self.driveRateShadow)
@@ -68,7 +75,7 @@ class ArenaScene: SKScene, SKSceneDelegate, ObservableObject {
             easyDot.color = color
             easyDot.alpha = 0.85
 
-            let tipPosition = CGPoint(x: layer.penLength * layer.roller.size.width, y: 0)
+            let tipPosition = CGPoint(x: layer.pen.frame.size.width, y: 0)
             let dotPosition = layer.pen.convert(tipPosition, to: self)
 
             easyDot.position = dotPosition

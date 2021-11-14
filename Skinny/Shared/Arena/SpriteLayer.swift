@@ -51,7 +51,7 @@ class SpriteLayer: Identifiable, ObservableObject {
     }
 
     func spinarmLengthFractionChanged(_ fraction: Double) {
-        UserDefaults.standard.set(spinarmFraction, forKey: "spinarmFraction\(layerIndex)")
+        UserDefaults.standard.set(fraction, forKey: "spinarmFraction\(layerIndex)")
 
         let resize = SKAction.resize(toWidth: self.spinarmLength, duration: 1)
         spinarm.run(resize)

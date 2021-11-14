@@ -19,7 +19,7 @@ struct AppSettingsView: View {
     var body: some View {
         VStack {
             SliderView(
-                label: "Carousel", labellet: "Hz", range: -1.5...1.5, step: 0.1,
+                label: "Carousel", labellet: "Hz", range: -1.5...1.5, step: 0.25,
                 value: $carouselHz
             )
             .modifier(SliderViewDefaults())
@@ -28,7 +28,7 @@ struct AppSettingsView: View {
 
             SliderView(
                 label: "Drive rate", labellet: "Hz",
-                range: AppSettingsView.driveRateRange, step: 0.1,
+                range: AppSettingsView.driveRateRange, step: 0.25,
                 value: $driveRateHz
             )
             .modifier(SliderViewDefaults())
@@ -45,7 +45,7 @@ struct AppSettingsView: View {
             .onChange(of: driveRateHz) { newRate in self.setDriveRate(newRate) }
 
             SliderView(
-                label: "Speed", labellet: "X", range: 0...2, step: 0.05,
+                label: "Speed", labellet: "X", range: 0...2, step: 0.25,
                 value: $runSpeed
             )
             .modifier(SliderViewDefaults())
@@ -61,7 +61,7 @@ struct AppSettingsView: View {
             .onChange(of: runSpeed) { self.setRunSpeed($0) }
 
             SliderView(label: "Zoom", labellet: "X", range: 0...3,
-                       step: 0.1, value: $zoomLevel
+                       step: 0.25, value: $zoomLevel
             )
             .modifier(SliderViewDefaults())
             .help("Zoom, like it says on the tin")

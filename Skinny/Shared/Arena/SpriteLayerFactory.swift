@@ -30,7 +30,7 @@ extension SpriteLayerFactory {
 
         let rollerSprite = ringsPool.makeSprite()
 
-        rollerSprite.color = .red//spinarm.color
+        rollerSprite.color = spinarm.color
         rollerSprite.size = frameSize
         rollerSprite.position = CGPoint(x: -frameSize.width, y: 0)
 
@@ -43,12 +43,11 @@ extension SpriteLayerFactory {
         let penSprite = linesPool.makeSprite()
 
         penSprite.anchorPoint = CGPoint(x: 0, y: 0.5)
-        penSprite.color = .green//rollerSprite.color
+        penSprite.color = rollerSprite.color
 
-        penSprite.size.height = 1
         rollerSprite.addChild(penSprite)
 
-        return rollerSprite
+        return penSprite
     }
 
     func makeSpinarm(
@@ -57,7 +56,7 @@ extension SpriteLayerFactory {
         let spinarmSprite = linesPool.makeSprite()
 
         spinarmSprite.anchorPoint = CGPoint(x: 0, y: 0.5)
-        spinarmSprite.color = .blue//color
+        spinarmSprite.color = color
 
         parentNode.addChild(spinarmSprite)
 
